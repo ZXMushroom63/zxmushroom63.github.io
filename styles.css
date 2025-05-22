@@ -110,3 +110,11 @@ html, body {
     border-color: gray;
     cursor: auto;
 }
+a {
+    color: lightblue;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+}
