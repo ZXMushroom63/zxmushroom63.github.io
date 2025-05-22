@@ -118,3 +118,8 @@ a {
 a:hover {
     color: white;
 }
+#repostars {
+    margin: calc(0.2rem + 0.5px);
+    vertical-align: bottom;
+    display: inline-block;
+}

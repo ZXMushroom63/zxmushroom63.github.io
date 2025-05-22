@@ -155,6 +155,16 @@ async function addTracedNodes(data) {
             document.querySelector("#viewdemo").onclick = () => {
                 window.open(elem.demo);
             }
+            if (elem.source.startsWith("https://github.com")) {
+                var embed = elem.source.replace("https://github.com/", "");
+                if (embed.endsWith("/")) {
+                    embed = embed.substring(0, embed.length - 1);
+                }
+                document.querySelector("#repostars").style.display = "inline-block";
+                document.querySelector("#repostars").src = `https://img.shields.io/github/stars/${embed}?style=social`;
+            } else {
+                document.querySelector("#repostars").style.display = "none";
+            }
             node.classList.add("selected");
         });
         document.body.appendChild(node);
@@ -162,6 +172,7 @@ async function addTracedNodes(data) {
     }
 }
 document.querySelector(".mainNode").addEventListener("click", () => {
+    document.querySelector("#repostars").style.display = "none";
     document.querySelectorAll(".selected").forEach(nodes => {
         nodes.classList.remove("selected");
     });
