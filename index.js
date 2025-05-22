@@ -102,6 +102,17 @@ function splashAnim(elem) {
             source: "https://github.com/ZXMushroom63/MakeMeABlender/",
             demo: "https://www.youtube.com/watch?v=lw0k9YSwZ8w"
         },
+        {
+            img: "public/synthetic.png",
+            hover: "Web DAW",
+            title: "SYNTHETIC Audio",
+            desc: `Web based DAW that supports mutliplayer, has synths & soundfonts, custom waveforms and LFOs, you get the idea.
+            
+            Built using:
+            HTML5, JavaScript, CSS, Ungodly amount of web APIs`,
+            source: "https://github.com/ZXMushroom63/synthetic-audio/",
+            demo: "https://zxmushroom63.github.io/synthetic-audio/"
+        },
         ]);
 
     }, 500)
