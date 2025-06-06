@@ -123,14 +123,14 @@ function sleep(t) {
     });
 }
 async function addTracedNodes(data) {
-    const ringSpacing = 10;
+    const ringSpacing = 14;
     var currentRingSize = 6;
     var currentRing = 1;
     var cumulativeIndex = 0;
     const extraSpacing = 5;
     for (let index = 0; index < data.length; index++) {
         cumulativeIndex++;
-        
+
         if (index !== 0 && cumulativeIndex % (currentRingSize + 1) === 0) {
             cumulativeIndex -= currentRingSize;
             currentRingSize *= 2;
@@ -139,7 +139,8 @@ async function addTracedNodes(data) {
         await sleep(0.2);
         const elem = data[index];
         const node = document.createElement("div");
-        node.style = "--degree-offset: " + (ringSpacing * currentRing + extraSpacing) + "vw; --degree-pos: " + ((360 / currentRingSize) * (index % currentRingSize)) + "deg; background-image: " + (elem.img ? "url(" + elem.img + ")" : `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC)`) + "; --title-text: \"" + elem.title + "\"";
+        const degreeOffset = (ringSpacing * currentRing + extraSpacing);
+        node.style = "--degree-offset: min(" + degreeOffset + "vw, " + degreeOffset + "vh); --degree-pos: " + ((360 / currentRingSize) * (index % currentRingSize)) + "deg; background-image: " + (elem.img ? "url(" + elem.img + ")" : `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC)`) + "; --title-text: \"" + elem.title + "\"";
         node.setAttribute("title", elem.hover);
         node.classList.add("node");
         node.classList.add("fadeIn");
