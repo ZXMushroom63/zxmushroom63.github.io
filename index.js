@@ -124,19 +124,7 @@ function splashAnim(elem) {
             `,
             source: "https://github.com/ZXMushroom63/color-calendar/",
             demo: "https://zxmushroom63.github.io/color-calendar/"
-        },
-        {
-            img: "public/color_calendar.png",
-            hover: "Color-coded calendar",
-            title: "Color Calendar",
-            desc: `Color-coded PWA Calendar that runs offline using SW caching. It has a cool endless scrolling effect created by recycling 5 elements.
-            
-            Built using:
-            HTML5, JavaScript, CSS
-            `,
-            source: "https://github.com/ZXMushroom63/color-calendar/",
-            demo: "https://zxmushroom63.github.io/color-calendar/"
-        },
+        }
         ]);
 
     }, 500)
