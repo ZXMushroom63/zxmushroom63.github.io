@@ -13,8 +13,8 @@ async function main() {
     launched = true;
     launchText = "loading rain_a.mp3...";
     const rainBytes = await (await fetch("rain_a.mp3")).arrayBuffer();
-    launchText = "loading 3min_wind_synth.wav...";
-    const windBytes = await (await fetch("3min_wind_synth.wav")).arrayBuffer();
+    launchText = "loading 3min_wind_synth.mp3...";
+    const windBytes = await (await fetch("3min_wind_synth.mp3")).arrayBuffer();
     launchText = "decoding rain_a.mp3...";
     const rainBuffer = await audioCtx.decodeAudioData(rainBytes);
     launchText = "decoding 3min_wind_synth.wav...";
