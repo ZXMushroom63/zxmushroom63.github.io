@@ -3,28 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="iamge/png" href="favicon.png">
+    <title>ZXMushroom63's WIP website</title>
+    <style>
+      html,
+      body {
+        background-color: black;
+      }
+      img,
+      video {
+        display: none;
+      }
+      canvas {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: transparent;
+        image-rendering: pixelated;
+      }
+      #floatermenu::-webkit-scrollbar {
+        display: none;
+      }
+      #floatermenu {
+        overflow-y: auto;
+        position: fixed;
+        left: 12.5px;
+        bottom: 12.5px;
+        top: 75px;
+        width: 25vw;
+        backdrop-filter: blur(5px);
+        border-radius: 6px;
+        opacity: 0;
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+      @media (max-width: 950px) {
+        #floatermenu {
+          top: calc(100vh - 35vh - 12.5px);
+          left: 12.5px;
+          bottom: 12.5px;
+          right: 12.5px;
+          width: calc(100vw - 12.5px - 12.5px);
+          height: 35vh;
+        }
+      }
+      li {
+        display: block;
+        width: calc(100% - 37.5px);
+        background-color: blue;
+        margin: 12.5px;
+        height: 37.5px;
+        color: white;
+        text-align: left;
+        padding-left: 12.5px;
+        line-height: 37.5px;
+        font-family: monospace;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 6px;
+        background-color: rgba(0, 0, 0, 0.12);
+        user-select: none;
+        transition: 0.15s background-color, 0.15s border-color,
+          0.15s text-decoration-color;
+        cursor: pointer;
+        border: 1px solid transparent;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+      }
+
+      li:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+      li:active {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+      li.selected {
+        background-color: rgba(255, 255, 255, 0.12);
+        text-decoration-color: white;
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+    </style>
   </head>
   <body>
-    <h3><a href="https://github.com/ZXMushroom63">ZXMushroom63</a>'s Portfolio</h3>
-    <div class="mainNode">
+    <img src="background.png" id="bgasset" />
+    <video
+      src="rain_transparent.webm"
+      preload="auto"
+      id="bgrain1"
+      muted
+    ></video>
+    <video
+      src="rain_transparent.webm"
+      preload="auto"
+      id="bgrain2"
+      muted
+    ></video>
+    <canvas id="mainui"></canvas>
+    
+    <div id="floatermenu">
+      <li data-val="aboutme" class="selected">about me</li>
+      <li data-val="projects">code projects</li>
+      <li data-val="music">music things</li>
+      <li data-val="music">3d art</li>
     </div>
 
-    <div class="splash" onclick="splashAnim(this)">
-        <h1>Click to continue</h1>
-    </div>
-
-    <div id="info">
-      <span>Welcome to my portfolio!</span>
-      <br>
-      <button disabled id="viewsource">
-        Source
-      </button><button disabled id="viewdemo">
-        Demo
-      </button><img id="repostars" src="" style="display: none;">
-    </div>
-
-    <script src="index.js"></script>
+    <script src="font.js"></script>
+    <script src="liquidfun_v1.1.0.min.js"></script>
+    <script src="audio.js"></script>
+    <script src="hires_canvas.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
