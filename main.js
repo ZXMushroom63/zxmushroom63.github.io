@@ -16,9 +16,6 @@ let currentRain = bgrain1;
 bgrain1.load();
 bgrain2.load();
 window.bgFilter = "none";
-bgrain1.addEventListener("canplay", () => {
-    bgrain1.play();
-});
 bgrain1.addEventListener('ended', () => {
     currentRain = bgrain2;
     bgrain2.currentTime = 0;
@@ -78,6 +75,9 @@ function frame() {
         mainCtx.fillText(launchText, vw(0.5), vh(0.5) - (18 * devicePixelRatio));
         return requestAnimationFrame(frame);
     }
+
+    mainCtx.fillStyle = "black";
+    mainCtx.fillRect(0, 0, vw(1), vh(1));
 
     const gainLerp = ((gain.value % 1) * 10) % 10;
     const aspectScaleX = mainCtx.canvas.width / (1920 * 2 * devicePixelRatio);
