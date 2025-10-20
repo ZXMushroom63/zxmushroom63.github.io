@@ -246,8 +246,8 @@ function lightning(manual) {
     }
 }
 setTimeout(lightning, 1000 * 30 + (1000 * 20 * Math.random));
-addEventListener("keydown", (e) => {
-    if (e.key === "l") {
-        lightning(true);
-    }
-});
+// addEventListener("keydown", (e) => {
+//     if (e.key === "l") {
+//         lightning(true);
+//     }
+// });
