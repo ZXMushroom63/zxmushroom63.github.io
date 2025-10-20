@@ -56,7 +56,7 @@ function animatedText() {
 }
 const mouse = { nx: -1000, ny: -1000, x: 0, y: 0 };
 let lastFrame = Date.now();
-let launched = false;
+let launchText = "click to launch";
 function frame() {
     const mobileMode = 950 > innerWidth;
     const currentTime = Date.now();
@@ -72,12 +72,10 @@ function frame() {
     if (!window.gain) {
         mainCtx.fillStyle = `rgba(0,0,0,1)`;
         mainCtx.fillRect(0, 0, vw(1), vh(1));
-        if (!launched) {
-            mainCtx.fillStyle = "white";
-            mainCtx.textAlign = "center";
-            mainCtx.font = "36px monospace";
-            mainCtx.fillText("click to launch", vw(0.5), vh(0.5) - (18 * devicePixelRatio));
-        }
+        mainCtx.fillStyle = "white";
+        mainCtx.textAlign = "center";
+        mainCtx.font = "36px monospace";
+        mainCtx.fillText(launchText, vw(0.5), vh(0.5) - (18 * devicePixelRatio));
         return requestAnimationFrame(frame);
     }
 
@@ -89,7 +87,7 @@ function frame() {
     let fillHeight = (1080 * 2 * devicePixelRatio) * aspectFillScale;
     let fillX = (mainCtx.canvas.width - fillWidth) / 2;
     let fillY = (mainCtx.canvas.height - fillHeight) / 2;
-    
+
     if (gainLerp > 0.01) {
         mainCtx.filter = window.bgFilter;
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
@@ -173,7 +171,7 @@ function frame() {
     mainCtx.shadowColor = "transparent";
     mainCtx.shadowBlur = 0;
 
-    const renderTop = devicePixelRatio * 10 * 5 + 18.75 * devicePixelRatio + (lastChangeTimer * 40 * devicePixelRatio * (Math.random() - 0.5));
+    const renderTop = devicePixelRatio * 10 * 5 + 18.75 * devicePixelRatio + (lastChangeTimer * 40 * devicePixelRatio);
     const renderLeft = mobileMode ? 12.5 * devicePixelRatio : (25 + 12.5) * devicePixelRatio + vw(0.25);
     const renderRight = vw(1) - (12.5 * devicePixelRatio);
     mainCtx.fillStyle = `white`;

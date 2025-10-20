@@ -11,10 +11,15 @@ const audioCtx = new AudioContext({
 });
 async function main() {
     launched = true;
+    launchText = "loading rain_a.mp3...";
     const rainBytes = await (await fetch("rain_a.mp3")).arrayBuffer();
+    launchText = "loading 3min_wind_synth.wav...";
     const windBytes = await (await fetch("3min_wind_synth.wav")).arrayBuffer();
+    launchText = "decoding rain_a.mp3...";
     const rainBuffer = await audioCtx.decodeAudioData(rainBytes);
+    launchText = "decoding 3min_wind_synth.wav...";
     const windBuffer = await audioCtx.decodeAudioData(windBytes);
+    launchText = "";
 
     const rainSource = audioCtx.createBufferSource();
     rainSource.loop = true;
