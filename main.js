@@ -9,7 +9,6 @@ const flags = 0 << 0;
    * @type {CanvasRenderingContext2D}
    */
 const mainCtx = mainUI.getContext("2d");
-const bgasset = document.querySelector("#bgasset");
 const bgrain1 = document.querySelector("#bgrain1");
 const bgrain2 = document.querySelector("#bgrain2");
 const floatermenu = document.querySelector("#floatermenu");
@@ -90,11 +89,11 @@ function frame() {
     let fillHeight = (1080 * 2 * devicePixelRatio) * aspectFillScale;
     let fillX = (mainCtx.canvas.width - fillWidth) / 2;
     let fillY = (mainCtx.canvas.height - fillHeight) / 2;
-    mainCtx.filter = window.bgFilter;
-    mainCtx.drawImage(bgasset, fillX, fillY, fillWidth, fillHeight);
-    mainCtx.filter = "none";
+    
     if (gainLerp > 0.01) {
+        mainCtx.filter = window.bgFilter;
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
+        mainCtx.filter = "none";
     }
 
     mainCtx.strokeStyle = "white";
