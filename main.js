@@ -233,7 +233,7 @@ function lightning(manual) {
             setTimeout(() => {
                 window.bgFilter = `none`;
             }, 20 + 70 * Math.random())
-        }, 20 + 70 * Math.random())
+        }, 30 + 90 * Math.random())
     }, 20 + 70 * Math.random());
     const sfx = new Audio(`Thunder${1 + Math.floor(3 * Math.random())}.ogg`);
     sfx.volume = Math.min(1, 400 / lightningDistance);
