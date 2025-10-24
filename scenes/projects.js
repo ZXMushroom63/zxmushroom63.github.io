@@ -16,7 +16,7 @@ renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, re
         if (ent.id === "mouse") {
             return;
         }
-        ent.radius = Math.min(vw(0.1), vh(0.1));
+        ent.radius = vw(0.1);
         mainCtx.shadowColor = `rgba(255,255,255,${clamp(Math.abs(ent.x - ent.preX) + Math.abs(ent.y - ent.preY) / 150, 0.15, 1)})`;
         mainCtx.beginPath();
         mainCtx.arc(ent.x, ent.y, ent.radius, 0, Math.PI * 2);
