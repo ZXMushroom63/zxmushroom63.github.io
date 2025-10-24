@@ -1,4 +1,5 @@
 // custom made physics engine based on verlet integration
+// thank you Ricky-Jan https://scratch.mit.edu/projects/899958937/fullscreen/
 
 const world = {
     left: 0,
