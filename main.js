@@ -179,6 +179,9 @@ function frame() {
 
     (renderer[currentScene] || (()=>{}))(mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime);
 
+    mainCtx.strokeStyle = "";
+    mainCtx.shadowColor = "transparent";
+    mainCtx.shadowBlur = 0;
     mainCtx.fillStyle = `rgba(0,0,0,${1 - gainLerp})`;
 
     floatermenu.style.display = (gainLerp < 0.01) ? "none" : "block";

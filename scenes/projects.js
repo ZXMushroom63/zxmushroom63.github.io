@@ -8,16 +8,18 @@ renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, re
     world.top = renderTop;
     world.bottom = renderBottom;
     worldTick(deltaTime);
-    mainCtx.strokeStyle = "";
-    mainCtx.shadowColor = "transparent";
-    mainCtx.shadowBlur = 0;
-    mainCtx.fillStyle = `rgba(255,255,255,0.1)`;
+    mainCtx.strokeStyle = "white";
+    mainCtx.shadowColor = "white";
+    mainCtx.shadowBlur = 15;
+    
     entities.forEach(ent => {
         if (ent.id === "mouse") {
             return;
         }
+        ent.radius = Math.min(vw(0.1), vh(0.1));
+        mainCtx.shadowColor = `rgba(255,255,255,${clamp(Math.abs(ent.x - ent.preX) + Math.abs(ent.y - ent.preY) / 150, 0.15, 1)})`;
         mainCtx.beginPath();
         mainCtx.arc(ent.x, ent.y, ent.radius, 0, Math.PI * 2);
-        mainCtx.fill();
+        mainCtx.stroke();
     });
 }
