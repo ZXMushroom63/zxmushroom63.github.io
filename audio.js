@@ -16,7 +16,7 @@ async function main() {
     launchText = "loading 3min_wind_synth.mp3...";
     const windBytes = await (await fetch("3min_wind_synth.mp3")).arrayBuffer();
     launchText = "loading [EXPURGED]...";
-    const _Bytes = await (await fetch("_recording.mp3")).arrayBuffer();
+    const _Bytes = await (await fetch("recording.mp3")).arrayBuffer();
 
     bgrain1.play();
 
