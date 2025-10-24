@@ -1,3 +1,4 @@
+const renderer = {};
 let lastChangeTimer = 0;
 let currentScene = "aboutme";
 const mainUI = document.querySelector("#mainui");
@@ -173,18 +174,10 @@ function frame() {
 
     const renderTop = devicePixelRatio * 10 * 5 + 18.75 * devicePixelRatio + (lastChangeTimer * 40 * devicePixelRatio);
     const renderLeft = mobileMode ? 12.5 * devicePixelRatio : (25 + 12.5) * devicePixelRatio + vw(0.25);
+    const renderBottom = mobileMode ? vh(1 - 0.35) - (25 * devicePixelRatio) : vh(1) - (12.5 * devicePixelRatio);
     const renderRight = vw(1) - (12.5 * devicePixelRatio);
-    mainCtx.fillStyle = `white`;
-    mainCtx.textAlign = "left";
-    mainCtx.font = "36px monospace";
-    let descPos = renderTop + (36 * 1);
-    descPos += wordWrapText(renderLeft, descPos, "Hi, I'm ZXMushroom63.", 36, renderRight);
-    descPos += 36;
-    descPos += wordWrapText(renderLeft, descPos, "I develop software, mainly in vanilla web tech (HTML, CSS, JS), but I'm also learning Rust.", 36, renderRight);
-    descPos += 36;
-    descPos += wordWrapText(renderLeft, descPos, "Having developed my own DAW, I know a decent amount about music theory and sound design, but I'm still practising.", 36, renderRight);
-    descPos += 36;
-    descPos += wordWrapText(renderLeft, descPos, "When I'm not doing either music or SWE, I'll probably be screwing around in Blender making something (or be asleep).", 36, renderRight);
+
+    (renderer[currentScene] || (()=>{}))(mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime);
 
     mainCtx.fillStyle = `rgba(0,0,0,${1 - gainLerp})`;
 
