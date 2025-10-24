@@ -29,17 +29,18 @@ function worldTick(deltaTime) {
     const maxX = world.right;
     const maxY = world.bottom;
 
-    entities[0].x = entities[0].preX = mouse.nx * devicePixelRatio;
-    entities[0].y = entities[0].preY = mouse.ny * devicePixelRatio;
+    const obj_mouse = entities[0];
+
+    obj_mouse.x = obj_mouse.preX = mouse.nx * devicePixelRatio;
+    obj_mouse.y = obj_mouse.preY = mouse.ny * devicePixelRatio;
+
     if (mouse.nx < 0) {
-        entities[0].radius = 0;
+        obj_mouse.radius = 0;
     } else {
-        entities[0].radius = 25;
+        obj_mouse.radius = 25;
     }
 
     const velMult = 1 - (airResistance * deltaTime);
-
-
 
     // collision pairs
     for (let iter = 0; iter < 1; iter++) {
