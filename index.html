@@ -32,7 +32,7 @@
         position: fixed;
         left: 12.5px;
         bottom: 12.5px;
-        top: 75px;
+        top: 74px;
         width: 25vw;
         backdrop-filter: blur(5px);
         border-radius: 6px;
@@ -40,6 +40,14 @@
         background-color: rgba(255, 255, 255, 0.08);
       }
       #content {
+        display: none;
+        overflow-y: auto;
+        position: fixed;
+        left: calc(25px + 25vw);
+        bottom: 12.5px;
+        top: 74px;
+        right: 12.5px;
+        backdrop-filter: blur(5px);
         border-radius: 6px;
         opacity: 0;
         background-color: rgba(255, 255, 255, 0.08);
@@ -52,6 +60,13 @@
           right: 12.5px;
           width: calc(100vw - 12.5px - 12.5px);
           height: 35vh;
+        }
+
+        #content {
+          left: 12.5px;
+          height: calc(100vh - 35vw - 24px);
+          top: 74px;
+          right: 12.5px;
         }
       }
       li {
@@ -117,19 +132,16 @@
       <li data-val="pfps">pfps</li>
     </div>
 
-    <div id="content">
-
-    </div>
+    <div id="content"></div>
 
     <script src="hires_canvas.js"></script>
     <script src="font.js"></script>
     <script src="physics.js"></script>
     <script src="main.js"></script>
     <script src="audio.js"></script>
-    
 
     <!-- modules -->
-     <script src="scenes/aboutme.js"></script>
-     <script src="scenes/projects.js"></script>
+    <script src="scenes/aboutme.js"></script>
+    <script src="scenes/projects.js"></script>
   </body>
 </html>
