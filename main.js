@@ -290,6 +290,7 @@ addEventListener("load", () => {
             e.target.classList.add("selected");
             currentScene = e.target.getAttribute("data-val");
             lastChangeTimer = 0.25;
+            document.querySelector("#content").display = "none";
         }
     });
 });
