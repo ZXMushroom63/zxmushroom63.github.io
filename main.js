@@ -20,6 +20,7 @@ const mainCtx = mainUI.getContext("2d");
 const bgrain1 = document.querySelector("#bgrain1");
 const bgrain2 = document.querySelector("#bgrain2");
 const floatermenu = document.querySelector("#floatermenu");
+const htmlcontent = document.querySelector("#content");
 let currentRain = bgrain1;
 bgrain1.load();
 bgrain2.load();
@@ -231,9 +232,17 @@ function frame() {
     mainCtx.fillStyle = `rgba(0,0,0,${1 - gainLerp})`;
 
     floatermenu.style.display = (gainLerp < 0.01) ? "none" : "block";
+    
     if (floatermenu.style.display === "block") {
         floatermenu.style.opacity = gainLerp;
     }
+
+    if (gainLerp < 0.01) {
+        htmlcontent.style.opacity = 0;
+    } else {
+        htmlcontent.style.opacity = gainLerp;
+    }
+    
 
     mainCtx.fillRect(0, 0, vw(1), vh(1));
     prevFrameMouseData = mouseDown;

@@ -87,7 +87,7 @@ function worldTick(deltaTime) {
     const velMult = 1 - (airResistance * deltaTime);
 
     // collision pairs
-    for (let iter = 0; iter < 2; iter++) {
+    for (let iter = 0; iter < 1; iter++) {
         for (let i = 0; i < entities.length; i++) {
             for (let j = 0; j < entities.length; j++) {
                 if (i === j) {

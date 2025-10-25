@@ -1,17 +1,24 @@
 renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime) {
     mainCtx.fillStyle = `white`;
     mainCtx.textAlign = "left";
-    mainCtx.lineWidth = 2 * devicePixelRatio;
+    mainCtx.lineWidth = 1 * devicePixelRatio;
     mainCtx.font = "36px monospace";
-    wordWrapText(renderLeft, renderTop + 36, "Double-click a project for more info.", 36, renderRight);
+    wordWrapText(renderLeft, renderTop + 36, "Double-click a project to view information about it.", 36, renderRight);
     world.left = renderLeft;
     world.right = renderRight;
     world.top = renderTop;
     world.bottom = renderBottom;
     worldTick(deltaTime);
-    mainCtx.strokeStyle = "white";
-    mainCtx.shadowColor = "white";
+    mainCtx.strokeStyle = "rgba(255,255,255,0.5)";
+    mainCtx.shadowColor = "rgba(255,255,255,0.5)";
     mainCtx.shadowBlur = 15;
+
+    mainCtx.beginPath();
+    mainCtx.moveTo(renderLeft, renderBottom);
+    mainCtx.lineTo(renderRight, renderBottom);
+    mainCtx.stroke();
+
+    mainCtx.lineWidth = 2 * devicePixelRatio;
 
     entities.forEach(ent => {
         if (ent.id === "mouse") {
