@@ -9,6 +9,9 @@
 const audioCtx = new AudioContext({
     sampleRate: 48000
 });
+globalThis.gain2 = {
+    setValueAtTime: ()=>{},
+};
 async function main() {
     launched = true;
     launchText = "loading rain_a.mp3...";
@@ -41,6 +44,8 @@ async function main() {
 
     const gainNode = audioCtx.createGain();
 
+    const sliderNode = audioCtx.createGain();
+
     rainSource.connect(gainNode);
     windSource.connect(gainNode);
     _Source.connect(gainNode);
@@ -48,7 +53,11 @@ async function main() {
 
     gainNode.gain.setValueAtTime(0, 0);
     globalThis.gain = gainNode.gain;
-    gainNode.connect(audioCtx.destination);
+
+    sliderNode.gain.setValueAtTime(sliderVol, 0);
+    window.gain2 = sliderNode.gain;
+    gainNode.connect(sliderNode);
+    sliderNode.connect(audioCtx.destination);
 
     rainSource.start(0);
     windSource.start(0);

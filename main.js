@@ -1,3 +1,10 @@
+let mouseDown = false;
+let isSlidering = false;
+let prevFrameMouseData = false;
+let sliderVol = clamp(parseFloat(localStorage.getItem("volamount")), 0, 1);
+if (isNaN(sliderVol)) {
+    sliderVol = 1;
+}
 const renderer = {};
 let lastChangeTimer = 0;
 let currentScene = "aboutme";
@@ -177,7 +184,46 @@ function frame() {
     const renderBottom = mobileMode ? vh(1 - 0.35) - (25 * devicePixelRatio) : vh(1) - (12.5 * devicePixelRatio);
     const renderRight = vw(1) - (12.5 * devicePixelRatio);
 
-    (renderer[currentScene] || (()=>{}))(mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime);
+    (renderer[currentScene] || (() => { }))(mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime);
+
+    //volume slider
+    // icon is 3x3
+    // padding = 12.5dpi
+    // height = 22.5dpi
+    mainCtx.shadowColor = "transparent";
+    mainCtx.shadowBlur = 0;
+    const sliderPadding = 12.5 * devicePixelRatio;
+    const sliderWidth = Math.min(vw(0.2), 175 * devicePixelRatio);
+    const sliderLeft = vw(1) - sliderWidth - sliderPadding;
+    const sliderRight = sliderLeft + sliderWidth;
+    const sliderHeight = 22.5 * devicePixelRatio;
+    const sliderBottom = sliderPadding + sliderHeight;
+
+
+    if (!mouseDown) {
+        isSlidering = false;
+    }
+    if (!prevFrameMouseData && mouseDown
+        && ((mouse.nx * devicePixelRatio) < (sliderRight + 15))
+        && ((mouse.nx * devicePixelRatio) > (sliderLeft - 15))
+        && ((mouse.ny * devicePixelRatio) < (sliderBottom + 9))
+        && ((mouse.ny * devicePixelRatio) > (sliderPadding - 9))
+    ) {
+        isSlidering = true;
+    }
+    if (isSlidering) {
+        sliderVol = clamp(((mouse.nx * devicePixelRatio) - sliderLeft) / sliderWidth, 0, 1);
+        localStorage.setItem("volamount", sliderVol);
+        gain2.setValueAtTime(sliderVol, 0);
+    }
+
+    mainCtx.fillStyle = "rgba(255,255,255,0.25)";
+    mainCtx.fillRect(sliderLeft, sliderPadding + sliderHeight * 0.425, sliderWidth, sliderHeight * 0.15);
+    mainCtx.fillStyle = "white";
+    mainCtx.shadowColor = "white";
+    mainCtx.shadowBlur = 7;
+    mainCtx.fillRect(lerp(sliderLeft, sliderRight - 2.5 * devicePixelRatio, sliderVol), sliderPadding, 3 * devicePixelRatio, sliderHeight);
+    myText((sliderVol === 0) ? ";" : "}{"[Math.floor(sliderVol * 1.99)], sliderLeft - sliderHeight - sliderPadding, sliderPadding, 7.5 * devicePixelRatio);
 
     mainCtx.strokeStyle = "";
     mainCtx.shadowColor = "transparent";
@@ -190,15 +236,41 @@ function frame() {
     }
 
     mainCtx.fillRect(0, 0, vw(1), vh(1));
+    prevFrameMouseData = mouseDown;
     requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-
+addEventListener("mousedown", (e) => {
+    if (e.button !== 0) { return };
+    mouseDown = true;
+});
+addEventListener("mouseup", (e) => {
+    if (e.button !== 0) { return };
+    mouseDown = false;
+});
+addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) { return };
+    mouseDown = true;
+});
+addEventListener("touchend", (e) => {
+    if (e.touches.length !== 0) { return };
+    mouseDown = false;
+});
 addEventListener("mousemove", (e) => {
     mouse.nx = e.x;
     mouse.ny = e.y;
 });
 addEventListener("mouseout", (e) => {
+    mouseDown = false;
+    mouse.nx = -500;
+    mouse.ny = -500;
+});
+addEventListener("touchmove", (e) => {
+    mouse.nx = e.targetTouches[0].clientX;
+    mouse.ny = e.targetTouches[0].clientY;
+});
+addEventListener("touchcancel", (e) => {
+    mouseDown = false;
     mouse.nx = -500;
     mouse.ny = -500;
 });
@@ -244,3 +316,5 @@ setTimeout(lightning, 1000 * 30 + (1000 * 20 * Math.random));
 //         lightning(true);
 //     }
 // });
+
+mainUI.addEventListener("contextmenu", (e) => e.preventDefault());

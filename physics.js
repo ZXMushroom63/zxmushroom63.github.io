@@ -8,19 +8,67 @@ const world = {
     bottom: 2000
 }
 const noise = 0.01;
-const airResistance = 0.7;
+const airResistance = 0.6;
 const entities = [
-    { x: 1000, y: 1000, preX: 1000, preY: 1000, radius: 25, id: "mouse" },
     { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
     { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
     { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
-]
-const gravity = { x: 0, y: 15 };
-const restitution = 0.9;
+    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
+    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
+    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
+    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
+    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
+    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
+    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
+    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
+    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
+    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
+];
+let inspectedEntity = null;
+const gravity = { x: 0, y: 20 };
+const restitution = 0.7;
 function clamp(x, min, max) {
     return Math.min(max, Math.max(min, x));
 }
 const timeScale = 1;
+let grabbedEntity = null;
+function startGrab(mouseEvent) {
+    const now = Date.now();
+    const x = (mouseEvent.x ?? mouseEvent.targetTouches[0].clientX) * devicePixelRatio;
+    const y = (mouseEvent.y ?? mouseEvent.targetTouches[0].clientY) * devicePixelRatio;
+
+    for (let i = 0; i < entities.length; i++) {
+        const entity = entities[i];
+        if (Math.sqrt(Math.pow(x - entity.x, 2) + Math.pow(y - entity.y, 2)) < entity.radius) {
+            // we have found the ball.
+            mouse.nx = entity.x / devicePixelRatio;
+            mouse.ny = entity.y / devicePixelRatio;
+            grabbedEntity = entity;
+            if ((now - entity.lastGrabbed) < 200) {
+                // doubleclick?
+                inspectedEntity = entity;
+            }
+            entity.lastGrabbed = now;
+            break;
+        }
+    }
+}
+function endGrab() {
+    grabbedEntity = null;
+}
+
+const throwDamping = 0.7;
+
+addEventListener("touchstart", startGrab);
+addEventListener("mousedown", startGrab);
+addEventListener("mouseup", endGrab);
+addEventListener("touchend", endGrab);
+addEventListener("touchcancel", endGrab);
 function worldTick(deltaTime) {
     deltaTime *= timeScale;
 
@@ -29,21 +77,17 @@ function worldTick(deltaTime) {
     const maxX = world.right;
     const maxY = world.bottom;
 
-    const obj_mouse = entities[0];
-
-    obj_mouse.x = obj_mouse.preX = mouse.nx * devicePixelRatio;
-    obj_mouse.y = obj_mouse.preY = mouse.ny * devicePixelRatio;
-
-    if (mouse.nx < 0) {
-        obj_mouse.radius = 0;
-    } else {
-        obj_mouse.radius = 25;
+    if (grabbedEntity) {
+        grabbedEntity.x = mouse.nx * devicePixelRatio;
+        grabbedEntity.y = mouse.ny * devicePixelRatio;
+        grabbedEntity.preX = lerp(mouse.x, mouse.nx, throwDamping) * devicePixelRatio;
+        grabbedEntity.preY = lerp(mouse.y, mouse.ny, throwDamping) * devicePixelRatio;
     }
 
     const velMult = 1 - (airResistance * deltaTime);
 
     // collision pairs
-    for (let iter = 0; iter < 1; iter++) {
+    for (let iter = 0; iter < 2; iter++) {
         for (let i = 0; i < entities.length; i++) {
             for (let j = 0; j < entities.length; j++) {
                 if (i === j) {
@@ -51,9 +95,6 @@ function worldTick(deltaTime) {
                 }
                 const a = entities[i];
                 const b = entities[j];
-                if (a.id === "mouse") {
-                    continue;
-                }
 
                 const dx = b.x - a.x;
                 const dy = b.y - a.y;
@@ -61,7 +102,7 @@ function worldTick(deltaTime) {
                 const dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
                 const combinedRadius = a.radius + b.radius;
                 if (combinedRadius > dist) {
-                    const depth = (dist - combinedRadius) / (b.id === "mouse" ? 16 : 2);
+                    const depth = (dist - combinedRadius) / (b === grabbedEntity ? 2 : 2);
                     const cos = dx / dist;
                     const sin = dy / dist;
                     a.x += depth * cos;
