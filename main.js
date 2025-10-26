@@ -1,4 +1,4 @@
-const assets = Object.fromEntries([...document.querySelectorAll(".asset")].map(asset => [asset.id, ()=>{asset.loading = ""; return asset;}]));
+const assets = Object.fromEntries([...document.querySelectorAll(".asset")].map(asset => [asset.id, () => { asset.loading = ""; return asset; }]));
 
 let mouseDown = false;
 let isSlidering = false;
@@ -239,7 +239,7 @@ function frame() {
     mainCtx.fillStyle = `rgba(0,0,0,${1 - gainLerp})`;
 
     floatermenu.style.display = (gainLerp < 0.01) ? "none" : "block";
-    
+
     if (floatermenu.style.display === "block") {
         floatermenu.style.opacity = gainLerp;
     }
@@ -249,7 +249,7 @@ function frame() {
     } else {
         htmlcontent.style.opacity = gainLerp;
     }
-    
+
 
     mainCtx.fillRect(0, 0, vw(1), vh(1));
     prevFrameMouseData = mouseDown;
@@ -336,7 +336,17 @@ addEventListener("keydown", (e) => {
 
 mainUI.addEventListener("contextmenu", (e) => e.preventDefault());
 
+const CLOSE_BTN = `<a class="close" href="javascript:void(0)" onclick="this.parentElement.parentElement.style.display = 'none';">[X]</a>`;
+
 function displayText(text, title) {
+    title ||= "popup";
+    htmlcontent.innerText = text;
+    htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML;
+    htmlcontent.style.display = "block";
+}
+
+function displayProj(text, title, src, demo) {
+    // todo
     title ||= "popup";
     htmlcontent.innerText = text;
     htmlcontent.style.display = "block";
