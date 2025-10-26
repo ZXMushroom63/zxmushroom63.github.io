@@ -24,7 +24,7 @@ const htmlcontent = document.querySelector("#content");
 let currentRain = bgrain1;
 bgrain1.load();
 bgrain2.load();
-window.bgFilter = "none";
+window.bgFilter = "";
 bgrain1.addEventListener('ended', () => {
     currentRain = bgrain2;
     bgrain2.currentTime = 0;
@@ -81,7 +81,9 @@ function frame() {
         mainCtx.fillStyle = "white";
         mainCtx.textAlign = "center";
         mainCtx.font = "36px monospace";
-        mainCtx.fillText(launchText, vw(0.5), vh(0.5) - (18 * devicePixelRatio));
+        mainCtx.fillText(launchText, vw(0.5), vh(0.5) - 36);
+        mainCtx.fillStyle = "rgba(255,255,255,0.7)";
+        mainCtx.fillText("(photosensitivity warning!)", vw(0.5), vh(0.5) + 36);
         return requestAnimationFrame(frame);
     }
 
@@ -98,7 +100,7 @@ function frame() {
     let fillY = (mainCtx.canvas.height - fillHeight) / 2;
 
     if (gainLerp > 0.01) {
-        mainCtx.filter = window.bgFilter;
+        mainCtx.filter = window.bgFilter || "brightness(0.5)";
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
         mainCtx.filter = "none";
     }
@@ -303,28 +305,28 @@ function lightning(manual) {
         return setTimeout(lightning, 1000 * 30 + (1000 * 20 * Math.random()));
     }
     const lightningDistance = 50 + 2150 * Math.random();
-    window.bgFilter = `brightness(${5000 / lightningDistance}) contrast(1) saturate(0)`;
+    window.bgFilter = `brightness(${6000 / lightningDistance}) contrast(1) saturate(0)`;
     setTimeout(() => {
-        window.bgFilter = "none";
+        window.bgFilter = "";
         setTimeout(() => {
-            window.bgFilter = `brightness(${3000 / lightningDistance}) contrast(1) saturate(0)`;
+            window.bgFilter = `brightness(${2000 / lightningDistance}) contrast(1) saturate(0)`;
             setTimeout(() => {
-                window.bgFilter = `none`;
+                window.bgFilter = "";
             }, 20 + 70 * Math.random())
-        }, 30 + 90 * Math.random())
+        }, 36 + 90 * Math.random())
     }, 20 + 70 * Math.random());
     const sfx = new Audio(`Thunder${1 + Math.floor(3 * Math.random())}.ogg`);
     sfx.volume = Math.min(1, 400 / lightningDistance);
-    setTimeout(() => sfx.play(), lightningDistance / 343 * 250);
+    setTimeout(() => sfx.play(), lightningDistance / 343 * 350);
     if (!manual) {
         return setTimeout(lightning, 1000 * 30 + (1000 * 50 * Math.random()));
     }
 }
 setTimeout(lightning, 1000 * 30 + (1000 * 20 * Math.random));
-// addEventListener("keydown", (e) => {
-//     if (e.key === "l") {
-//         lightning(true);
-//     }
-// });
+addEventListener("keydown", (e) => {
+    if (e.key === "l") {
+        lightning(true);
+    }
+});
 
 mainUI.addEventListener("contextmenu", (e) => e.preventDefault());

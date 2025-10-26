@@ -1,4 +1,5 @@
 renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime) {
+    const now = Date.now();
     mainCtx.fillStyle = `white`;
     mainCtx.textAlign = "left";
     mainCtx.lineWidth = 1 * devicePixelRatio;
@@ -28,13 +29,13 @@ renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, re
 
         switch (ent) {
             case inspectedEntity:
-                mainCtx.strokeStyle = "red";
+                mainCtx.strokeStyle = "rgba(255,255,255,1)";
                 break;
             case grabbedEntity:
-                mainCtx.strokeStyle = "cyan";
+                mainCtx.strokeStyle = `rgba(255,255,255,${0.5 + (Math.sin(now / 200) * 0.3)})`;
                 break;
             default:
-                mainCtx.strokeStyle = "white";
+                mainCtx.strokeStyle = "rgba(255,255,255,0.1)";
                 break;
         }
 
