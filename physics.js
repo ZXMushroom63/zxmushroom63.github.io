@@ -10,12 +10,77 @@ const world = {
 const noise = 0.01;
 const airResistance = 0.6;
 const entities = [
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Color Calendar", tex: "zx_calendar" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "EaglerForge", tex: "ef_eaglerforge" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Flow", tex: "zx_flow" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Scratch++", tex: "zx_scratchplusplus" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Useful Notebook", tex: "zx_notebook" },
+    {
+        x: 606, y: 600, preX: 901, preY: 900, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic", data: {
+            desc: `Web based DAW that supports mutliplayer, has synths & soundfonts, custom waveforms and LFOs, you get the idea.
+            
+            Built using:
+            HTML5, JavaScript, CSS, Ungodly amount of web APIs`,
+            source: "https://github.com/ZXMushroom63/synthetic-audio/",
+            demo: "https://zxmushroom63.github.io/synthetic-audio/"
+        },
+    },
+    {
+        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Color Calendar", tex: "zx_calendar", data: {
+            desc: `Color-coded PWA Calendar that runs offline using SW caching. It has a cool endless scrolling effect created by recycling 5 elements.
+            
+            Built using:
+            HTML5, JavaScript, CSS
+            `,
+            source: "https://github.com/ZXMushroom63/color-calendar/",
+            demo: "https://zxmushroom63.github.io/color-calendar/"
+        }
+    },
+    {
+        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "EaglerForge", tex: "ef_eaglerforge", meta: {
+            desc: `EaglerForge is a fork of EaglercraftX (a web-port of Minecraft 1.8.8) that adds a modding API. I contributed the majority of the modding API, back when the project was called EaglerReborn. My recent contributions mainly include a prototype mod list GUI built in Java rather than HTML, and a semi-automatic reflection structure generator.
+            
+            Built using:
+            Java, GLSL, JavaScript, HTML5, CSS`,
+            source: "https://github.com/EaglerForge/EaglerForge",
+            demo: "https://github.com/EaglerForge/EaglerForge"
+        },
+    },
+    {
+        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Flow", tex: "zx_flow", data: {
+            desc: `Flow is a node-based calculator.
+            
+            Built using:
+            JavaScript, HTML5, CSS, JSON`,
+            source: "https://github.com/ZXMushroom63/Flow",
+            demo: "https://zxmushroom63.github.io/Flow/"
+        }
+    },
+    {
+        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Scratch++", tex: "zx_scratchplusplus", data: {
+            desc: `Scratch++ is a Scratch mod that adds new features like fencing controls and the power operator. However, unlike other scratch mods, it also adds the ability to compile the project for use in normal Scratch!
+            
+            Built using:
+            React, JSX, JavaScript, HTML5, CSS, Scratch, JSON`,
+            source: "https://github.com/ZXMushroom63/scratch-gui",
+            demo: "https://scratch.mit.edu/projects/960924608"
+        }
+    },
+    {
+        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Useful Notebook", tex: "zx_notebook", data: {
+            desc: `A node-based notebook that supports nesting and markdown syntax. Autosaves to localStorage, but can use the file system API to save to a file instead.
+            
+            Built using:
+            HTML5, JavaScript, CSS`,
+            source: "https://github.com/ZXMushroom63/useful-notebook/",
+            demo: "https://zxmushroom63.github.io/useful-notebook/"
+        },
+    },
+    {
+        x: 601, y: 601, preX: 902, preY: 900, radius: 125, name: "HTML5 Audio Player", tex: "zx_audioplayer", data: {
+            desc: `This is an audio player with multiple vizualisers built purely in web tech, packaged in a single .html file.
+            
+            Built using:
+            JavaScript, HTML5, CSS`,
+            source: "https://github.com/ZXMushroom63/simple-web-audio-player",
+            demo: "https://zxmushroom63.github.io/simple-web-audio-player/"
+        },
+    },
 ];
 let inspectedEntity = null;
 const gravity = { x: 0, y: 20 };
@@ -26,6 +91,10 @@ function clamp(x, min, max) {
 const timeScale = 1;
 let grabbedEntity = null;
 function startGrab(mouseEvent) {
+    if (mouseEvent instanceof MouseEvent && mouseEvent.button !== 0) {
+        return;
+    }
+
     const now = Date.now();
     const x = (mouseEvent.x ?? mouseEvent.targetTouches[0].clientX) * devicePixelRatio;
     const y = (mouseEvent.y ?? mouseEvent.targetTouches[0].clientY) * devicePixelRatio;
@@ -40,6 +109,8 @@ function startGrab(mouseEvent) {
             if ((now - entity.lastGrabbed) < 200) {
                 // doubleclick?
                 inspectedEntity = entity;
+
+                displayText(entity.data.desc, entity.name);
             }
             entity.lastGrabbed = now;
             break;

@@ -89,6 +89,8 @@ function frame() {
         return requestAnimationFrame(frame);
     }
 
+    mainCtx.imageSmoothingEnabled = false;
+
     mainCtx.fillStyle = "black";
     mainCtx.fillRect(0, 0, vw(1), vh(1));
 
@@ -227,6 +229,7 @@ function frame() {
     mainCtx.fillStyle = "white";
     mainCtx.shadowColor = "white";
     mainCtx.shadowBlur = 7;
+    mainCtx.fillStyle = "rgba(255,255,255,1)";
     mainCtx.fillRect(lerp(sliderLeft, sliderRight - 2.5 * devicePixelRatio, sliderVol), sliderPadding, 3 * devicePixelRatio, sliderHeight);
     myText((sliderVol === 0) ? ";" : "}{"[Math.floor(sliderVol * 1.99)], sliderLeft - sliderHeight - sliderPadding, sliderPadding, 7.5 * devicePixelRatio);
 
@@ -332,3 +335,9 @@ addEventListener("keydown", (e) => {
 });
 
 mainUI.addEventListener("contextmenu", (e) => e.preventDefault());
+
+function displayText(text, title) {
+    title ||= "popup";
+    htmlcontent.innerText = text;
+    htmlcontent.style.display = "block";
+}
