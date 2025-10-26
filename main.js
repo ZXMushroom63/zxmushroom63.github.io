@@ -230,6 +230,7 @@ function frame() {
     mainCtx.shadowColor = "white";
     mainCtx.shadowBlur = 7;
     mainCtx.fillStyle = "rgba(255,255,255,1)";
+    mainCtx.strokeStyle = "rgba(255,255,255,1)";
     mainCtx.fillRect(lerp(sliderLeft, sliderRight - 2.5 * devicePixelRatio, sliderVol), sliderPadding, 3 * devicePixelRatio, sliderHeight);
     myText((sliderVol === 0) ? ";" : "}{"[Math.floor(sliderVol * 1.99)], sliderLeft - sliderHeight - sliderPadding, sliderPadding, 7.5 * devicePixelRatio);
 
