@@ -10,24 +10,12 @@ const world = {
 const noise = 0.01;
 const airResistance = 0.6;
 const entities = [
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
-    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
-    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
-    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
-    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
-    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
-    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, id: "" },
-    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, id: "" },
-    { x: 607, y: 600, preX: 903, preY: 900, radius: 125, id: "" },
+    { x: 606, y: 600, preX: 901, preY: 900, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Color Calendar", tex: "zx_calendar" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "EaglerForge", tex: "ef_eaglerforge" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Flow", tex: "zx_flow" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Scratch++", tex: "zx_scratchplusplus" },
+    { x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Useful Notebook", tex: "zx_notebook" },
 ];
 let inspectedEntity = null;
 const gravity = { x: 0, y: 20 };

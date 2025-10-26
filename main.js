@@ -1,3 +1,5 @@
+const assets = Object.fromEntries([...document.querySelectorAll(".asset")].map(asset => [asset.id, ()=>{asset.loading = ""; return asset;}]));
+
 let mouseDown = false;
 let isSlidering = false;
 let prevFrameMouseData = false;
@@ -82,7 +84,7 @@ function frame() {
         mainCtx.textAlign = "center";
         mainCtx.font = "36px monospace";
         mainCtx.fillText(launchText, vw(0.5), vh(0.5) - 36);
-        mainCtx.fillStyle = "rgba(255,255,255,0.7)";
+        mainCtx.fillStyle = "rgba(255,255,255,0.4)";
         mainCtx.fillText("(photosensitivity warning!)", vw(0.5), vh(0.5) + 36);
         return requestAnimationFrame(frame);
     }

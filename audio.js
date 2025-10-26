@@ -1,11 +1,3 @@
-// fetch("rain_transparent.webm").then(async res => {
-//     const blob = await res.blob();
-//     const url = URL.createObjectURL(blob);
-//     document.querySelectorAll(".videoasset").forEach(x => {
-//         x.src = url;
-//         x.load();
-//     });
-// });
 const audioCtx = new AudioContext({
     sampleRate: 48000
 });
