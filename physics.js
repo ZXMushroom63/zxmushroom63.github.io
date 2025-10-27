@@ -150,27 +150,38 @@ function worldTick(deltaTime) {
 
     // collision pairs
     for (let iter = 0; iter < 1; iter++) {
-        for (let i = 0; i < entities.length; i++) {
-            for (let j = 0; j < entities.length; j++) {
-                if (i === j) {
-                    continue;
-                }
+        const len = entities.length;
+        for (let i = 0; i < len; i++) {
+            for (let j = i + 1; j < len; j++) { // now nlogn
                 const a = entities[i];
                 const b = entities[j];
 
                 const dx = b.x - a.x;
                 const dy = b.y - a.y;
 
-                const dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+                const distSq = (dx * dx) + (dy * dy);
                 const combinedRadius = a.radius + b.radius;
-                if (combinedRadius > dist) {
-                    const depth = (dist - combinedRadius) / (b === grabbedEntity ? 2 : 2);
-                    const cos = dx / dist;
-                    const sin = dy / dist;
-                    a.x += depth * cos;
-                    a.y += depth * sin;
-                    a.preY -= depth * cos * restitution;
-                    a.preY -= depth * sin * restitution;
+                const combinedRadiusSq = combinedRadius * combinedRadius;
+
+                if (combinedRadiusSq > distSq) {
+                    const dist = Math.sqrt(distSq);
+                    const depth = (dist - combinedRadius);
+
+                    const normX = dist === 0 ? 1 : dx / dist;
+                    const normY = dist === 0 ? 0 : dy / dist;
+
+                    const correctAX = (depth / 2) * normX;
+                    const correctAY = (depth / 2) * normY;
+
+                    a.x += correctAX;
+                    a.y += correctAY;
+                    b.x -= correctAX;
+                    b.y -= correctAY;
+
+                    a.preX -= correctAX * restitution;
+                    a.preY -= correctAY * restitution;
+                    b.preX += correctAX * restitution;
+                    b.preY += correctAY * restitution;
                 }
             }
         }
