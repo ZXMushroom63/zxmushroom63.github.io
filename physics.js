@@ -91,6 +91,9 @@ function clamp(x, min, max) {
 const timeScale = 1;
 let grabbedEntity = null;
 function startGrab(mouseEvent) {
+    if (currentScene !== "projects") {
+        return;
+    }
     if (mouseEvent instanceof MouseEvent && mouseEvent.button !== 0) {
         return;
     }
