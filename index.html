@@ -48,6 +48,7 @@
         border-radius: 6px;
         opacity: 0;
         background-color: rgba(255, 255, 255, 0.08);
+        contain: strict;
       }
       #content {
         display: none;
@@ -65,6 +66,7 @@
         font-family: monospace;
         user-select: none;
         padding: 12.5px;
+        contain: strict;
       }
       @media (max-width: 950px) {
         #floatermenu {
@@ -78,9 +80,10 @@
 
         #content {
           left: 12.5px;
-          height: calc(100vh - 35vw - 24px);
+          height: calc(100vh - 35vw - 75px - 74px);
           top: 74px;
           right: 12.5px;
+          bottom: unset;
         }
       }
       li {
