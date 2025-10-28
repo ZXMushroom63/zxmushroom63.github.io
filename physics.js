@@ -113,7 +113,7 @@ function startGrab(mouseEvent) {
                 // doubleclick?
                 inspectedEntity = entity;
 
-                displayText(entity.data.desc, entity.name);
+                displayProj(entity.data.desc, entity.name, entity.data.source, entity.data.demo);
             }
             entity.lastGrabbed = now;
             break;

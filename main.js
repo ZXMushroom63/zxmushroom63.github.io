@@ -346,8 +346,8 @@ function displayText(text, title) {
 }
 
 function displayProj(text, title, src, demo) {
-    // todo
     title ||= "popup";
     htmlcontent.innerText = text;
+    htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML + `<br><br><a href="${src}" target="_blank">source code</a>&nbsp;|&nbsp;<a href="${demo}" target="_blank">demo</a>`;
     htmlcontent.style.display = "block";
 }
