@@ -91,8 +91,7 @@ function frame() {
 
     mainCtx.imageSmoothingEnabled = false;
 
-    mainCtx.fillStyle = "black";
-    mainCtx.fillRect(0, 0, vw(1), vh(1));
+    mainCtx.clearRect(0, 0, vw(1), vh(1));
 
     const gainLerp = ((gain.value % 1) * 10) % 10;
     const aspectScaleX = mainCtx.canvas.width / (1920 * 2 * devicePixelRatio);
