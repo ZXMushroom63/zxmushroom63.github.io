@@ -12,7 +12,7 @@ const airResistance = 0.6;
 const entities = [
     {
         x: 606, y: 600, preX: 901, preY: 900, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic", data: {
-            desc: `Web based DAW that supports mutliplayer, has synths & soundfonts, custom waveforms and LFOs, you get the idea.
+            desc: `Web based DAW that supports multiplayer, has synths & soundfonts, custom waveforms and LFOs, you get the idea.
             
             <br><br><br>Built using:<br>
             HTML5, JavaScript, CSS, Ungodly amount of web APIs`,
@@ -139,7 +139,7 @@ function startGrab(mouseEvent) {
             mouse.nx = entity.x / devicePixelRatio;
             mouse.ny = entity.y / devicePixelRatio;
             grabbedEntity = entity;
-            if ((now - entity.lastGrabbed) < 200) {
+            if ((now - entity.lastGrabbed) < 300) {
                 // doubleclick?
                 inspectedEntity = entity;
 
