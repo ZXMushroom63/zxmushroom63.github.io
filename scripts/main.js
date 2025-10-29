@@ -299,6 +299,9 @@ mainUI.addEventListener("touchstart", (e) => {
 htmlcontent.addEventListener("touchstart", (e) => {
     e.stopPropagation();
 });
+htmlcontent.addEventListener("mousedown", (e) => {
+    e.stopPropagation();
+});
 addEventListener("touchend", (e) => {
     if (e.touches.length !== 0) { return };
     mouseDown = false;
@@ -380,6 +383,6 @@ function displayProj(text, title, src, demo, img) {
     title ||= "popup";
     htmlcontent.innerHTML = text.replace("\n", "<br>");
     htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML + `<br><br><a href="${src}" target="_blank">source code</a>&nbsp;|&nbsp;<a href="${demo}" target="_blank">demo</a>` +
-        `<a href="${demo}" target="_blank"><img src="${img}" class="projectImage" draggable="false"></a>`;
+        `<img src="${img}" class="projectImage" draggable="false" onclick="this.requestFullscreen()">`;
     htmlcontent.style.display = "block";
 }

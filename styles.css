@@ -30,6 +30,7 @@ img.projectImage {
   bottom: 12.5px;
   float: right;
   right: 12.5px;
+  cursor: pointer;
 }
 img {
   border-radius: 6px;
