@@ -41,6 +41,7 @@ wr_resize();
 function lerp(a, b, k) {
     return (b - a) * k + a;
 }
+let helloQuote = "";
 function cdist(x, y, distdiv) {
     distdiv ||= 100;
     return Math.min(1, Math.max(0, Math.sqrt(((x - mouse.x) ** 2) + ((y - mouse.y) ** 2)) / distdiv));
@@ -265,9 +266,17 @@ function frame() {
     } else {
         htmlcontent.style.pointerEvents = "all";
     }
-
-
     mainCtx.fillRect(0, 0, vw(1), vh(1));
+
+    if (gainLerp < 0.1) {
+        mainCtx.fillStyle = `rgba(255,255,255,${1 - (gainLerp * 10)})`;
+        mainCtx.textAlign = "center";
+        mainCtx.shadowBlur = 0;
+        mainCtx.shadowColor = "none";
+        mainCtx.font = "36px monospace";
+        mainCtx.fillText(helloQuote, vw(0.5), vh(0.5));
+    }
+
     prevFrameMouseData = mouseDown;
     requestAnimationFrame(frame);
 }

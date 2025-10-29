@@ -2,7 +2,7 @@ const audioCtx = new AudioContext({
     sampleRate: 48000
 });
 globalThis.gain2 = {
-    setValueAtTime: ()=>{},
+    setValueAtTime: () => { },
 };
 async function main() {
     launched = true;
@@ -69,6 +69,21 @@ document.onclick = () => {
 var blurred = false;
 addEventListener("blur", () => {
     if (!blurred && window.gain) {
+        const hour = (new Date()).getHours();
+        let timeText = "morning";
+        if (hour > 12) {
+            timeText = "afternoon";
+        }
+        if (hour > 17) {
+            timeText = "evening";
+        }
+        if (hour > 20) {
+            timeText = "night";
+        }
+        const opts = ["hello", "see you later", "good " + timeText, "nice weather", "bye"];
+
+        helloQuote = opts[Math.floor(Math.random() * opts.length)];
+
         blurred = true;
         gain.setTargetAtTime(0.0, audioCtx.currentTime, 1);
     }
