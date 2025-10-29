@@ -74,7 +74,6 @@ function frame() {
     if (avgTime > (1 / 15)) {
         lagswitch();
     }
-    avgTime = lerp(avgTime, deltaTime, 0.03);
     lastFrame = currentTime;
     if (lastChangeTimer > 0) {
         lastChangeTimer -= deltaTime;
@@ -99,7 +98,7 @@ function frame() {
 
     mainCtx.clearRect(0, 0, vw(1), vh(1));
 
-    const gainLerp = ((gain.value % 1) * 10) % 10;
+    const gainLerp = Math.round((((gain.value % 1) * 10) % 10) * 1000) / 1000;
     const aspectScaleX = mainCtx.canvas.width / (1920 * 2 * devicePixelRatio);
     const aspectScaleY = mainCtx.canvas.height / (1080 * 2 * devicePixelRatio);
     let aspectFillScale = Math.max(aspectScaleX, aspectScaleY);
@@ -112,6 +111,12 @@ function frame() {
         mainCtx.filter = window.bgFilter || "brightness(0.5)";
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
         mainCtx.filter = "none";
+    }
+
+    if (gainLerp > 0.5) {
+        avgTime = lerp(avgTime, deltaTime, 0.03);
+    } else {
+        avgTime = 0;
     }
 
     mainCtx.strokeStyle = "white";
@@ -246,14 +251,19 @@ function frame() {
 
     floatermenu.style.display = (gainLerp < 0.01) ? "none" : "block";
 
+    const brightFilter = `brightness(${gainLerp})`;
+
     if (floatermenu.style.display === "block") {
-        floatermenu.style.opacity = gainLerp;
+        floatermenu.style.filter = brightFilter;
+    }
+    if (htmlcontent.style.display === "block") {
+        htmlcontent.style.filter = brightFilter;
     }
 
     if (gainLerp < 0.01) {
-        htmlcontent.style.opacity = 0;
+        htmlcontent.style.pointerEvents = "none";
     } else {
-        htmlcontent.style.opacity = gainLerp;
+        htmlcontent.style.pointerEvents = "all";
     }
 
 
@@ -273,6 +283,9 @@ addEventListener("mouseup", (e) => {
 addEventListener("touchstart", (e) => {
     if (e.touches.length !== 1) { return };
     mouseDown = true;
+});
+mainUI.addEventListener("touchstart", (e) => {
+    e.preventDefault();
 });
 addEventListener("touchend", (e) => {
     if (e.touches.length !== 0) { return };
@@ -351,9 +364,10 @@ function displayText(text, title) {
     htmlcontent.style.display = "block";
 }
 
-function displayProj(text, title, src, demo) {
+function displayProj(text, title, src, demo, img) {
     title ||= "popup";
-    htmlcontent.innerText = text;
-    htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML + `<br><br><a href="${src}" target="_blank">source code</a>&nbsp;|&nbsp;<a href="${demo}" target="_blank">demo</a>`;
+    htmlcontent.innerHTML = text.replace("\n", "<br>");
+    htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML + `<br><br><a href="${src}" target="_blank">source code</a>&nbsp;|&nbsp;<a href="${demo}" target="_blank">demo</a>` +
+        `<a href="${demo}" target="_blank"><img src="${img}" class="projectImage" draggable="false"></a>`;
     htmlcontent.style.display = "block";
 }

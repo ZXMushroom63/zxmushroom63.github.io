@@ -14,71 +14,101 @@ const entities = [
         x: 606, y: 600, preX: 901, preY: 900, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic", data: {
             desc: `Web based DAW that supports mutliplayer, has synths & soundfonts, custom waveforms and LFOs, you get the idea.
             
-            Built using:
+            <br><br><br>Built using:<br>
             HTML5, JavaScript, CSS, Ungodly amount of web APIs`,
             source: "https://github.com/ZXMushroom63/synthetic-audio/",
-            demo: "https://zxmushroom63.github.io/synthetic-audio/"
+            demo: "https://zxmushroom63.github.io/synthetic-audio/",
+            scrshot: "public/demo_images/synthetic_cover.png"
         },
     },
     {
         x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Color Calendar", tex: "zx_calendar", data: {
             desc: `Color-coded PWA Calendar that runs offline using SW caching. It has a cool endless scrolling effect created by recycling 5 elements.
             
-            Built using:
+            <br><br><br>Built using:<br>
             HTML5, JavaScript, CSS
             `,
             source: "https://github.com/ZXMushroom63/color-calendar/",
-            demo: "https://zxmushroom63.github.io/color-calendar/"
+            demo: "https://zxmushroom63.github.io/color-calendar/",
+            scrshot: "public/demo_images/colorcal.png"
         }
     },
     {
-        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "EaglerForge", tex: "ef_eaglerforge", data: {
+        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "EaglerForge", tex: "ef_eaglerforgeold", data: {
             desc: `EaglerForge is a fork of EaglercraftX (a web-port of Minecraft 1.8.8) that adds a modding API. I contributed the majority of the modding API, back when the project was called EaglerReborn. My recent contributions mainly include a prototype mod list GUI built in Java rather than HTML, and a semi-automatic reflection structure generator.
             
-            Built using:
+            <br><br><br>Built using:<br>
             Java, GLSL, JavaScript, HTML5, CSS`,
             source: "https://github.com/EaglerForge/EaglerForge",
-            demo: "https://github.com/EaglerForge/EaglerForge"
+            demo: "https://github.com/EaglerForge/EaglerForge",
+            scrshot: "public/demo_images/eflegacy.png"
+        },
+    },
+    {
+        x: 603, y: 600, preX: 902, preY: 900, radius: 125, name: "EFI", tex: "ef_eaglerforge", data: {
+            desc: `EaglerForgeInjector is a tool I created for the EaglerForge project to automatically inject a reflection-enabled modding API into eaglercraft builds.
+            It works by matching transpiled JavaScript and inserting hooks and monkey patching any important methods, then exposing methods, classes, and properties with a more user friendly API, along with a corelib.
+            
+            <br><br><br>Built using:<br>
+            JavaScript, HTML5, CSS`,
+            source: "https://github.com/EaglerForge/EaglerForgeInjector",
+            demo: "https://www.youtube.com/watch?v=lFR_370l89E",
+            scrshot: "public/demo_images/duck_mod.png"
+        },
+    },
+    {
+        x: 604, y: 600, preX: 902, preY: 900, radius: 125, name: "EF Builder New", tex: "ef_efbn", data: {
+            desc: `EaglerForgeBuilder was a project by <a href="https://github.com/OeildeLynx31">@OeilDeLynx32</a>, made for the legacy version of EaglerForge. EFBN is a more advanced & opinionated version for modern EaglerForge, and can create blocks and items with custom behaviour.
+            
+            <br><br><br>Built using:<br>
+            JavaScript, HTML5, CSS`,
+            source: "https://github.com/EaglerForge/EaglerForgeBuilderNew",
+            demo: "https://eaglerforge.github.io/EaglerForgeBuilderNew/",
+            scrshot: "public/demo_images/efbn_scrshot.png"
         },
     },
     {
         x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Flow", tex: "zx_flow", data: {
             desc: `Flow is a node-based calculator.
             
-            Built using:
+            <br><br><br>Built using:<br>
             JavaScript, HTML5, CSS, JSON`,
             source: "https://github.com/ZXMushroom63/Flow",
-            demo: "https://zxmushroom63.github.io/Flow/"
+            demo: "https://zxmushroom63.github.io/Flow/",
+            scrshot: "public/demo_images/flow_graph.png"
         }
     },
     {
         x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Scratch++", tex: "zx_scratchplusplus", data: {
             desc: `Scratch++ is a Scratch mod that adds new features like fencing controls and the power operator. However, unlike other scratch mods, it also adds the ability to compile the project for use in normal Scratch!
             
-            Built using:
+            <br><br><br>Built using:<br>
             React, JSX, JavaScript, HTML5, CSS, Scratch, JSON`,
             source: "https://github.com/ZXMushroom63/scratch-gui",
-            demo: "https://scratch.mit.edu/projects/960924608"
+            demo: "https://scratch.mit.edu/projects/960924608",
+            scrshot: "public/demo_images/spp_demo_image.png"
         }
     },
     {
         x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Useful Notebook", tex: "zx_notebook", data: {
             desc: `A node-based notebook that supports nesting and markdown syntax. Autosaves to localStorage, but can use the file system API to save to a file instead.
             
-            Built using:
+            <br><br><br>Built using:<br>
             HTML5, JavaScript, CSS`,
             source: "https://github.com/ZXMushroom63/useful-notebook/",
-            demo: "https://zxmushroom63.github.io/useful-notebook/"
+            demo: "https://zxmushroom63.github.io/useful-notebook/",
+            scrshot: "public/demo_images/notebook.png"
         },
     },
     {
         x: 601, y: 601, preX: 902, preY: 900, radius: 125, name: "HTML5 Audio Player", tex: "zx_audioplayer", data: {
             desc: `This is an audio player with multiple vizualisers built purely in web tech, packaged in a single .html file.
             
-            Built using:
+            <br><br><br>Built using:<br>
             JavaScript, HTML5, CSS`,
             source: "https://github.com/ZXMushroom63/simple-web-audio-player",
-            demo: "https://zxmushroom63.github.io/simple-web-audio-player/"
+            demo: "https://zxmushroom63.github.io/simple-web-audio-player/",
+            scrshot: "public/demo_images/goodmusic.png"
         },
     },
 ];
@@ -113,7 +143,7 @@ function startGrab(mouseEvent) {
                 // doubleclick?
                 inspectedEntity = entity;
 
-                displayProj(entity.data.desc, entity.name, entity.data.source, entity.data.demo);
+                displayProj(entity.data.desc, entity.name, entity.data.source, entity.data.demo, entity.data.scrshot);
             }
             entity.lastGrabbed = now;
             break;
