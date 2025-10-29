@@ -1,12 +1,12 @@
-let passes = 0;
+let downscalePasses = 0;
 function lagswitch() {
-    if (passes > 1) {
+    if (downscalePasses >= 3) {
         return;
     }
     avgTime = 0;
     window.devicePixelRatio = devicePixelRatio / 1.5;
     wr_resize();
-    passes++;
+    downscalePasses++;
 }
 const canvas_entries = [];
 function wr_resize() {
