@@ -139,7 +139,7 @@ function startGrab(mouseEvent) {
             mouse.nx = entity.x / devicePixelRatio;
             mouse.ny = entity.y / devicePixelRatio;
             grabbedEntity = entity;
-            if ((now - entity.lastGrabbed) < 300) {
+            if ((now - entity.lastGrabbed) < (200 * (1 + mobileMode))) {
                 // doubleclick?
                 inspectedEntity = entity;
 
