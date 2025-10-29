@@ -11,7 +11,7 @@ const noise = 0.01;
 const airResistance = 0.6;
 const entities = [
     {
-        x: 606, y: 600, preX: 901, preY: 900, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic", data: {
+        x: 600, y: 600, preX: 600, preY: 600, radius: 125, name: "SYNTHETIC Audio", tex: "zx_synthetic", data: {
             desc: `Web based DAW that supports multiplayer, has synths & soundfonts, custom waveforms and LFOs, you get the idea.
             
             <br><br><br>Built using:<br>
@@ -22,7 +22,7 @@ const entities = [
         },
     },
     {
-        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Color Calendar", tex: "zx_calendar", data: {
+        x: 601, y: 600, preX: 600, preY: 600, radius: 125, name: "Color Calendar", tex: "zx_calendar", data: {
             desc: `Color-coded PWA Calendar that runs offline using SW caching. It has a cool endless scrolling effect created by recycling 5 elements.
             
             <br><br><br>Built using:<br>
@@ -34,7 +34,7 @@ const entities = [
         }
     },
     {
-        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "EaglerForge", tex: "ef_eaglerforgeold", data: {
+        x: 602, y: 603, preX: 600, preY: 600, radius: 125, name: "EaglerForge", tex: "ef_eaglerforgeold", data: {
             desc: `EaglerForge is a fork of EaglercraftX (a web-port of Minecraft 1.8.8) that adds a modding API. I contributed the majority of the modding API, back when the project was called EaglerReborn. My recent contributions mainly include a prototype mod list GUI built in Java rather than HTML, and a semi-automatic reflection structure generator.
             
             <br><br><br>Built using:<br>
@@ -45,7 +45,7 @@ const entities = [
         },
     },
     {
-        x: 603, y: 600, preX: 902, preY: 900, radius: 125, name: "EFI", tex: "ef_eaglerforge", data: {
+        x: 603, y: 600, preX: 600, preY: 600, radius: 125, name: "EFI", tex: "ef_eaglerforge", data: {
             desc: `EaglerForgeInjector is a tool I created for the EaglerForge project to automatically inject a reflection-enabled modding API into eaglercraft builds.
             It works by matching transpiled JavaScript and inserting hooks and monkey patching any important methods, then exposing methods, classes, and properties with a more user friendly API, along with a corelib.
             
@@ -57,7 +57,7 @@ const entities = [
         },
     },
     {
-        x: 604, y: 600, preX: 902, preY: 900, radius: 125, name: "EF Builder New", tex: "ef_efbn", data: {
+        x: 604, y: 600, preX: 600, preY: 600, radius: 125, name: "EF Builder New", tex: "ef_efbn", data: {
             desc: `EaglerForgeBuilder was a project by <a href="https://github.com/OeildeLynx31">@OeilDeLynx32</a>, made for the legacy version of EaglerForge. EFBN is a more advanced & opinionated version for modern EaglerForge, and can create blocks and items with custom behaviour.
             
             <br><br><br>Built using:<br>
@@ -68,7 +68,7 @@ const entities = [
         },
     },
     {
-        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Flow", tex: "zx_flow", data: {
+        x: 602, y: 600, preX: 600, preY: 600, radius: 125, name: "Flow", tex: "zx_flow", data: {
             desc: `Flow is a node-based calculator.
             
             <br><br><br>Built using:<br>
@@ -79,7 +79,7 @@ const entities = [
         }
     },
     {
-        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Scratch++", tex: "zx_scratchplusplus", data: {
+        x: 602, y: 601, preX: 600, preY: 600, radius: 125, name: "Scratch++", tex: "zx_scratchplusplus", data: {
             desc: `Scratch++ is a Scratch mod that adds new features like fencing controls and the power operator. However, unlike other scratch mods, it also adds the ability to compile the project for use in normal Scratch!
             
             <br><br><br>Built using:<br>
@@ -90,7 +90,7 @@ const entities = [
         }
     },
     {
-        x: 602, y: 600, preX: 902, preY: 900, radius: 125, name: "Useful Notebook", tex: "zx_notebook", data: {
+        x: 602, y: 600, preX: 600, preY: 600, radius: 125, name: "Useful Notebook", tex: "zx_notebook", data: {
             desc: `A node-based notebook that supports nesting and markdown syntax. Autosaves to localStorage, but can use the file system API to save to a file instead.
             
             <br><br><br>Built using:<br>
@@ -101,7 +101,7 @@ const entities = [
         },
     },
     {
-        x: 601, y: 601, preX: 902, preY: 900, radius: 125, name: "HTML5 Audio Player", tex: "zx_audioplayer", data: {
+        x: 601, y: 601, preX: 600, preY: 600, radius: 125, name: "HTML5 Audio Player", tex: "zx_audioplayer", data: {
             desc: `This is an audio player with multiple vizualisers built purely in web tech, packaged in a single .html file.
             
             <br><br><br>Built using:<br>
@@ -195,7 +195,7 @@ function worldTick(deltaTime) {
 
                 if (combinedRadiusSq > distSq) {
                     const dist = Math.sqrt(distSq);
-                    const depth = (dist - combinedRadius);
+                    const depth = (dist - combinedRadius) * Math.min(1, deltaTime * 60);
 
                     const normX = dist === 0 ? 1 : dx / dist;
                     const normY = dist === 0 ? 0 : dy / dist;

@@ -62,14 +62,14 @@ async function main() {
 
     start = Date.now();
 }
-var startProj = () => {
+let startProj = () => {
     document.onclick = null;
 document.ontouchstart = null;
     main();
 };
 document.ontouchstart = startProj;
 document.onclick = startProj;
-var blurred = false;
+let blurred = false;
 addEventListener("blur", () => {
     if (!blurred && window.gain) {
         const hour = (new Date()).getHours();

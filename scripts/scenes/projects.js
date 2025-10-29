@@ -1,5 +1,18 @@
+let lastPhysicsTick = 0;
+let physicsTicker = 0;
 renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime) {
     const now = Date.now();
+    // if ((now - lastPhysicsTick) > 200) {
+    //     physicsTicker = 0;
+    //     console.log("tickReset");
+    // }
+    // lastPhysicsTick = now;
+    
+    // if (physicsTicker > 1) {
+    //     physicsTicker = 1;
+    // } else if (physicsTicker < 1) {
+    //     physicsTicker += deltaTime * 1;
+    // }
 
     const dpr = devicePixelRatio;
     const radius = mobileMode ? vh(0.065) : vw(0.05);

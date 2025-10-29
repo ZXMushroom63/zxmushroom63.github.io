@@ -47,14 +47,14 @@ function cdist(x, y, distdiv) {
     return Math.min(1, Math.max(0, Math.sqrt(((x - mouse.x) ** 2) + ((y - mouse.y) ** 2)) / distdiv));
 }
 const CHARSET = Object.keys(font);
-var start = Date.now();
+let start = Date.now();
 function animatedText() {
     const now = Date.now();
     const dt = now - start;
     if (dt > 4000) {
         return "zxmushroom63";
     }
-    var arr = "zxmushroom63".split("");
+    let arr = "zxmushroom63".split("");
     const chance = Math.pow(dt / 4000, 0.75);
     arr.forEach((x, i) => {
         if (Math.random() > chance) {
@@ -67,7 +67,7 @@ const mouse = { nx: -1000, ny: -1000, x: 0, y: 0 };
 let lastFrame = Date.now();
 let avgTime = 0;
 let launchText = "click to launch";
-var mobileMode = false;
+let mobileMode = false;
 function frame() {
     mobileMode = 950 > innerWidth;
     const currentTime = Date.now();
@@ -157,14 +157,14 @@ function frame() {
         }
     }
     function wordWrapText(x, y, text, fontHeight, maxWidth) {
-        var words = text.split(" ");
-        var lines = [];
-        var currentLine = words[0];
+        let words = text.split(" ");
+        let lines = [];
+        let currentLine = words[0];
 
 
-        for (var i = 1; i < words.length; i++) {
-            var word = words[i];
-            var width = mainCtx.measureText(currentLine + " " + word).width;
+        for (let i = 1; i < words.length; i++) {
+            let word = words[i];
+            let width = mainCtx.measureText(currentLine + " " + word).width;
             if ((x + width) < maxWidth) {
                 currentLine += " " + word;
             } else {
