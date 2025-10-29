@@ -296,6 +296,9 @@ addEventListener("touchstart", (e) => {
 mainUI.addEventListener("touchstart", (e) => {
     e.preventDefault();
 });
+htmlcontent.addEventListener("touchstart", (e) => {
+    e.stopPropagation();
+});
 addEventListener("touchend", (e) => {
     if (e.touches.length !== 0) { return };
     mouseDown = false;
