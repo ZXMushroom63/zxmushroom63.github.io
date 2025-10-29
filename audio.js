@@ -62,10 +62,13 @@ async function main() {
 
     start = Date.now();
 }
-document.onclick = () => {
+var startProj = () => {
     document.onclick = null;
+document.ontouchstart = null;
     main();
-}
+};
+document.ontouchstart = startProj;
+document.onclick = startProj;
 var blurred = false;
 addEventListener("blur", () => {
     if (!blurred && window.gain) {
