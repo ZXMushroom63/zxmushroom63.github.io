@@ -2,7 +2,7 @@ renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, re
     const now = Date.now();
 
     const dpr = devicePixelRatio;
-    const radius = vw(0.05);
+    const radius = mobileMode ? vh(0.065) : vw(0.05);
     const diam = radius * 2;
 
     const defaultWidth = 1 * dpr;

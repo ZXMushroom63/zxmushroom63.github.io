@@ -66,9 +66,9 @@ const mouse = { nx: -1000, ny: -1000, x: 0, y: 0 };
 let lastFrame = Date.now();
 let avgTime = 0;
 let launchText = "click to launch";
-
+var mobileMode = false;
 function frame() {
-    const mobileMode = 950 > innerWidth;
+    mobileMode = 950 > innerWidth;
     const currentTime = Date.now();
     const deltaTime = (Date.now() - lastFrame) / 1000;
     if (avgTime > (1 / 15)) {
@@ -340,7 +340,7 @@ function lightning(manual) {
         }, 36 + 90 * Math.random())
     }, 20 + 70 * Math.random());
     const sfx = new Audio(`Thunder${1 + Math.floor(3 * Math.random())}.ogg`);
-    sfx.volume = Math.min(1, 400 / lightningDistance);
+    sfx.volume = Math.min(1, 400 / lightningDistance) * sliderVol;
     setTimeout(() => sfx.play(), lightningDistance / 343 * 350);
     if (!manual) {
         return setTimeout(lightning, 1000 * 30 + (1000 * 50 * Math.random()));
