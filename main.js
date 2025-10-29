@@ -64,11 +64,17 @@ function animatedText() {
 }
 const mouse = { nx: -1000, ny: -1000, x: 0, y: 0 };
 let lastFrame = Date.now();
+let avgTime = 0;
 let launchText = "click to launch";
+
 function frame() {
     const mobileMode = 950 > innerWidth;
     const currentTime = Date.now();
     const deltaTime = (Date.now() - lastFrame) / 1000;
+    if (deltaTime > (1 / 15)) {
+        lagswitch();
+    }
+    lerp(avgTime, deltaTime, 0.1);
     lastFrame = currentTime;
     if (lastChangeTimer > 0) {
         lastChangeTimer -= deltaTime;

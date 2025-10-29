@@ -1,3 +1,12 @@
+let laggingMode = false;
+function lagswitch() {
+    if (laggingMode) {
+        return;
+    }
+    laggingMode = true; //toggle ldm mode
+    window.devicePixelRatio = 1;
+    wr_resize();
+}
 const canvas_entries = [];
 function wr_resize() {
     canvas_entries.forEach(x => {
