@@ -83,7 +83,7 @@ addEventListener("blur", () => {
         if (hour > 20) {
             timeText = "night";
         }
-        const opts = ["hello", "see you later", "good " + timeText, "nice weather", "bye"];
+        const opts = ["hello", "see you later", "good " + timeText, "nice weather", "bye", "FADE_OUT_ANIM", "clouds empty themselves into the abyss", "stay hydrated",          "did you hear it?"];
 
         helloQuote = opts[Math.floor(Math.random() * opts.length)];
 
