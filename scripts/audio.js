@@ -7,11 +7,11 @@ globalThis.gain2 = {
 async function main() {
     launched = true;
     launchText = "loading rain_a.mp3...";
-    const rainBytes = await (await fetch("rain_a.mp3")).arrayBuffer();
+    const rainBytes = await (await fetch("audio/rain_a.mp3")).arrayBuffer();
     launchText = "loading 3min_wind_synth.mp3...";
-    const windBytes = await (await fetch("3min_wind_synth.mp3")).arrayBuffer();
+    const windBytes = await (await fetch("audio/3min_wind_synth.mp3")).arrayBuffer();
     launchText = "loading [EXPURGED]...";
-    const _Bytes = await (await fetch("recording.mp3")).arrayBuffer();
+    const _Bytes = await (await fetch("audio/recording.mp3")).arrayBuffer();
 
     bgrain1.play();
 

@@ -1,0 +1,149 @@
+html,
+body {
+  background-color: black;
+}
+a {
+  color: lightblue;
+  text-decoration: underline;
+  cursor: pointer;
+  text-shadow: 0px 0px 1px;
+  transition: color 0.1s;
+}
+a:hover {
+  color: white;
+}
+a.close {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  text-shadow: 0px 0px 2px;
+}
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+}
+img.projectImage {
+  width: 30vw;
+  position: absolute;
+  bottom: 12.5px;
+  float: right;
+  right: 12.5px;
+}
+img {
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+}
+.asset {
+  display: none;
+}
+canvas {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  image-rendering: pixelated;
+  touch-action: manipulation;
+}
+#floatermenu::-webkit-scrollbar {
+  display: none;
+}
+#floatermenu {
+  display: none;
+  overflow-y: auto;
+  position: fixed;
+  left: 12.5px;
+  bottom: 12.5px;
+  top: 74px;
+  width: 25vw;
+  backdrop-filter: blur(5px) brightness(0.85);
+  border-radius: 6px;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.08);
+  contain: strict;
+  touch-action: manipulation;
+}
+#content {
+  display: none;
+  overflow-y: auto;
+  position: fixed;
+  left: calc(25px + 25vw);
+  bottom: 12.5px;
+  top: 74px;
+  right: 12.5px;
+  backdrop-filter: blur(5px) brightness(0.85);
+  border-radius: 6px;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-family: monospace;
+  user-select: none;
+  padding: 12.5px;
+  contain: strict;
+  touch-action: manipulation;
+}
+@media (max-width: 950px) {
+  #floatermenu {
+    top: calc(100vh - 35vh - 12.5px);
+    left: 12.5px;
+    bottom: 12.5px;
+    right: 12.5px;
+    width: calc(100vw - 12.5px - 12.5px);
+    height: 35vh;
+  }
+
+  #content {
+    left: 12.5px;
+    height: calc(100vh - 35vh - 75px - 49px);
+    top: 74px;
+    right: 12.5px;
+    bottom: unset;
+  }
+
+  img.projectImage {
+    top: unset;
+    right: unset;
+    bottom: 12.5px;
+    left: 12.5px;
+    width: 35vw;
+  }
+}
+li {
+  display: block;
+  width: calc(100% - 37.5px);
+  background-color: blue;
+  margin: 12.5px;
+  height: 37.5px;
+  color: white;
+  text-align: left;
+  padding-left: 12.5px;
+  line-height: 37.5px;
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.12);
+  user-select: none;
+  transition: 0.15s background-color, 0.15s border-color,
+    0.15s text-decoration-color;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+li:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+li:active {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+li.selected {
+  background-color: rgba(255, 255, 255, 0.12);
+  text-decoration-color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+}
