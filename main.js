@@ -71,10 +71,10 @@ function frame() {
     const mobileMode = 950 > innerWidth;
     const currentTime = Date.now();
     const deltaTime = (Date.now() - lastFrame) / 1000;
-    if (deltaTime > (1 / 15)) {
+    if (avgTime > (1 / 15)) {
         lagswitch();
     }
-    lerp(avgTime, deltaTime, 0.1);
+    avgTime = lerp(avgTime, deltaTime, 0.1);
     lastFrame = currentTime;
     if (lastChangeTimer > 0) {
         lastChangeTimer -= deltaTime;

@@ -16,7 +16,7 @@ renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, re
 
     mainCtx.fillStyle = `white`;
     mainCtx.textAlign = "left";
-    mainCtx.font = "36px monospace";
+    mainCtx.font = px(24)+"px monospace";
     world.left = renderLeft;
     world.right = renderRight;
     world.top = renderTop;
@@ -80,13 +80,13 @@ renderer["projects"] = function (mainCtx, renderLeft, renderTop, renderRight, re
         mainCtx.shadowColor = ``;
         mainCtx.shadowBlur = 0;
         
-        mainCtx.fillRect(targ.x - (metrics.width / 2) - 6, targ.y + radius - 6 + (18/2), metrics.width + 12, 36 + 6);
+        mainCtx.fillRect(targ.x - (metrics.width / 2) - 6, targ.y + radius - 6 + (18/2), metrics.width + 12, px(24) + 6);
         mainCtx.fillStyle = "white";
-        mainCtx.fillText(targ.name, targ.x, targ.y + radius + 36);
+        mainCtx.fillText(targ.name, targ.x, targ.y + radius + px(24));
     }
     
     mainCtx.shadowColor = ``;
     mainCtx.shadowBlur = 0;
     mainCtx.textAlign = "left";
-    wordWrapText(renderLeft, renderTop + 36, "Double-click a project to view information about it.", 36, renderRight);
+    wordWrapText(renderLeft, renderTop + px(24), "Double-click a project to view information about it.", px(24), renderRight);
 }

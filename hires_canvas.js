@@ -20,4 +20,7 @@ function vw(n) {
 function vh(n) {
     return devicePixelRatio * innerHeight * n;
 }
+function px(n) {
+    return Math.floor(devicePixelRatio * n);
+}
 addEventListener("resize", wr_resize);
