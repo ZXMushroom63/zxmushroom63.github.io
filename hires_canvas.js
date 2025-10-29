@@ -1,11 +1,12 @@
-let laggingMode = false;
+let passes = 0;
 function lagswitch() {
-    if (laggingMode) {
+    if (passes > 1) {
         return;
     }
-    laggingMode = true; //toggle ldm mode
-    window.devicePixelRatio = (devicePixelRatio <= 1) ? 0.5 : 1;
+    avgTime = 0;
+    window.devicePixelRatio = devicePixelRatio / 1.5;
     wr_resize();
+    passes++;
 }
 const canvas_entries = [];
 function wr_resize() {

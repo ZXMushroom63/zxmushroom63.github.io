@@ -74,7 +74,7 @@ function frame() {
     if (avgTime > (1 / 15)) {
         lagswitch();
     }
-    avgTime = lerp(avgTime, deltaTime, 0.1);
+    avgTime = lerp(avgTime, deltaTime, 0.03);
     lastFrame = currentTime;
     if (lastChangeTimer > 0) {
         lastChangeTimer -= deltaTime;
