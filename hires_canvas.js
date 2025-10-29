@@ -4,7 +4,7 @@ function lagswitch() {
         return;
     }
     laggingMode = true; //toggle ldm mode
-    window.devicePixelRatio = 1;
+    window.devicePixelRatio = (devicePixelRatio <= 1) ? 0.5 : 1;
     wr_resize();
 }
 const canvas_entries = [];
