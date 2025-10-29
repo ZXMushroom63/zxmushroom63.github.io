@@ -224,8 +224,8 @@ function frame() {
     if (!prevFrameMouseData && mouseDown
         && ((mouse.nx * devicePixelRatio) < (sliderRight + 15))
         && ((mouse.nx * devicePixelRatio) > (sliderLeft - 15))
-        && ((mouse.ny * devicePixelRatio) < (sliderBottom + 9))
-        && ((mouse.ny * devicePixelRatio) > (sliderPadding - 9))
+        && ((mouse.ny * devicePixelRatio) < (sliderBottom + 15))
+        && ((mouse.ny * devicePixelRatio) > (sliderPadding - 15))
     ) {
         isSlidering = true;
     }
