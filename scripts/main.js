@@ -1,4 +1,6 @@
-const assets = Object.fromEntries([...document.querySelectorAll(".asset")].map(asset => [asset.id, () => { asset.loading = ""; return asset; }]));
+const defaultImage = new Image(1, 1);
+defaultImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABBJREFUeJxjyGUoY4AAIAsADGYBxzHKYJYAAAAASUVORK5CYII=";
+const assets = Object.fromEntries([...document.querySelectorAll(".asset")].map(asset => [asset.id, () => { asset.loading = ""; return asset.complete ? asset : defaultImage; }]));
 
 let mouseDown = false;
 let isSlidering = false;
