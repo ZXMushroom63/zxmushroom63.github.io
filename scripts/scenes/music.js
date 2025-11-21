@@ -13,7 +13,7 @@ renderer["music"] = function (mainCtx, renderLeft, renderTop, renderRight, rende
     mainCtx.fillStyle = `rgba(0,0,0,0.3)`;
     mainCtx.fillRect(renderLeft + px(48 / (1 + mobileMode)), renderTop + px(48 / (1 + mobileMode)), (renderRight - renderLeft) - px(96 / (1 + mobileMode)), (renderBottom - renderTop) - px(96 / (1 + mobileMode)));
     if (songIndex < 0) {
-        songIndex = songs.length - 1;
+        songIndex = songs.length - 3;
     }
     songIndex %= songs.length;
     mainCtx.fillStyle = `rgba(255,255,255,0.5)`;
@@ -41,8 +41,39 @@ renderer["music"] = function (mainCtx, renderLeft, renderTop, renderRight, rende
     wordWrapText((renderLeft + renderRight) / 2, (renderTop + renderBottom) / 2 - textSize + px(28), currentSong[1].trim(), textSize, renderRight * 1.5);
 
     mainCtx.fillStyle = `rgba(255,255,255,0.8)`;
-    var spacing = px((3 + 3 + 5) * 10);
+    const spacing = px((3 + 3 + 6) * 10);
+    const width = px((3 + 3 + 5) * 10);
+    const mkHitbox = (p, q) => ({ x1: width / -2 + p - px(4), x2: width / 2 + p + px(4), y1: q - px(4), y2: px(20) + q + px(4), p, q });
+
+    mainCtx.fillText("← prev", (renderLeft + renderRight) / 2 - spacing, (renderTop + renderBottom) / 2 + px(60));
     mainCtx.fillText("open ↗", (renderLeft + renderRight) / 2, (renderTop + renderBottom) / 2 + px(60));
     mainCtx.fillText("next →", (renderLeft + renderRight) / 2 + spacing, (renderTop + renderBottom) / 2 + px(60));
-    mainCtx.fillText("← prev", (renderLeft + renderRight) / 2 - spacing, (renderTop + renderBottom) / 2 + px(60));
+
+    const hitboxes = [
+        mkHitbox((renderLeft + renderRight) / 2 - spacing, (renderTop + renderBottom) / 2 + px(60)),
+        mkHitbox((renderLeft + renderRight) / 2, (renderTop + renderBottom) / 2 + px(60)),
+        mkHitbox((renderLeft + renderRight) / 2 + spacing, (renderTop + renderBottom) / 2 + px(60)),
+    ];
+    for (let j = 0; j < hitboxes.length; j++) {
+        const hitbox = hitboxes[j];
+        const test_x = mouse.x * devicePixelRatio;
+        const test_y = mouse.y * devicePixelRatio;
+        if (
+            (test_x >= hitbox.x1) &&
+            (test_x <= hitbox.x2) &&
+            (test_y >= (hitbox.y1 - px(12))) &&
+            (test_y <= (hitbox.y2 - px(12)))
+        ) {
+            mainCtx.fillText("______", hitbox.p, hitbox.q);
+            if (!prevFrameMouseData && mouseDown) {
+                if (j === 0) {
+                    songIndex -= 3;
+                } else if (j === 1) {
+                    window.open(currentSong[2].trim());
+                } else {
+                    songIndex += 3;
+                }
+            }
+        }
+    }
 }
