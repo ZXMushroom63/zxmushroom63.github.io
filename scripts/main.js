@@ -110,6 +110,10 @@ function frame() {
     let fillX = (mainCtx.canvas.width - fillWidth) / 2;
     let fillY = (mainCtx.canvas.height - fillHeight) / 2;
 
+    if (currentRain.paused && (Math.random() < 0.05)) {
+        currentRain.play();
+    }
+
     if (gainLerp > 0.01) {
         mainCtx.filter = window.bgFilter || "brightness(0.5)";
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
