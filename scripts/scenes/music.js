@@ -10,6 +10,8 @@ const songs = [
 
 var songIndex = Math.floor(Math.random() * Math.floor(songs.length / 3)) * 3;
 renderer["music"] = function (mainCtx, renderLeft, renderTop, renderRight, renderBottom, wordWrapText, myText, deltaTime) {
+    mainCtx.fillStyle = `rgba(0,0,0,0.3)`;
+    mainCtx.fillRect(renderLeft + px(48 / (1 + mobileMode)), renderTop + px(48 / (1 + mobileMode)), (renderRight - renderLeft) - px(96 / (1 + mobileMode)), (renderBottom - renderTop) - px(96 / (1 + mobileMode)));
     if (songIndex < 0) {
         songIndex = songs.length - 1;
     }
@@ -36,5 +38,11 @@ renderer["music"] = function (mainCtx, renderLeft, renderTop, renderRight, rende
     mainCtx.font = px(20) + "px monospace";
     mainCtx.fillStyle = `rgba(255,255,255,0.7)`;
     mainCtx.textAlign = "center";
-    mainCtx.fillText(currentSong[1].trim(), (renderLeft + renderRight) / 2, (renderTop + renderBottom) / 2 + px(20));
+    wordWrapText((renderLeft + renderRight) / 2, (renderTop + renderBottom) / 2 - textSize + px(28), currentSong[1].trim(), textSize, renderRight * 1.5);
+
+    mainCtx.fillStyle = `rgba(255,255,255,0.8)`;
+    var spacing = px((3 + 3 + 5) * 10);
+    mainCtx.fillText("open ↗", (renderLeft + renderRight) / 2, (renderTop + renderBottom) / 2 + px(60));
+    mainCtx.fillText("next →", (renderLeft + renderRight) / 2 + spacing, (renderTop + renderBottom) / 2 + px(60));
+    mainCtx.fillText("← prev", (renderLeft + renderRight) / 2 - spacing, (renderTop + renderBottom) / 2 + px(60));
 }
