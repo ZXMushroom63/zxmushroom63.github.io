@@ -148,3 +148,10 @@ li.selected {
   text-decoration-color: white;
   border-color: rgba(255, 255, 255, 0.5);
 }
+.pfp {
+  width: min(256px, 85vw);
+  margin-bottom: 2px;
+}
+::-webkit-scrollbar {
+  display: none;
+}

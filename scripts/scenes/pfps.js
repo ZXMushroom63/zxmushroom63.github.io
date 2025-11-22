@@ -3,33 +3,31 @@ renderer["pfps"] = function (mainCtx, renderLeft, renderTop, renderRight, render
     mainCtx.textAlign = "left";
     mainCtx.font = px(24)+"px monospace";
     if (htmlcontent.writeEvent) {
-        displayText("Test content :D", "Profile Pictures", true);
-        htmlcontent.writeEvent = false;
-    }
-}
-/*
-    <img
-      class="asset"
-      loading="lazy"
+        displayText(`
+            <img
+      class="pfp"
       src="public/pfps/modern.png"
       id="pfp_modern"
     />
     <img
-      class="asset"
-      loading="lazy"
+      class="pfp"
       src="public/pfps/rain.png"
       id="pfp_rain"
     />
     <img
-      class="asset"
-      loading="lazy"
+      class="pfp"
       src="public/pfps/dreamy.png"
       id="pfp_dreamy"
     />
     <img
-      class="asset"
-      loading="lazy"
+      class="pfp"
       src="public/pfps/indistinct.png"
       id="pfp_indistinct"
     />
+            `, "Profile Pictures", true, true);
+        htmlcontent.writeEvent = false;
+    }
+}
+/*
+    
 */
