@@ -342,7 +342,7 @@ addEventListener("load", () => {
             e.target.classList.add("selected");
             currentScene = e.target.getAttribute("data-val");
             lastChangeTimer = 0.25;
-            document.querySelector("#content").display = "none";
+            document.querySelector("#content").style.visibility = "hidden";
         }
     });
 });
@@ -391,6 +391,7 @@ function displayText(text, title) {
     htmlcontent.innerText = text;
     htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML;
     htmlcontent.style.display = "block";
+    htmlcontent.style.visibility = "visible";
 }
 
 function displayProj(text, title, src, demo, img) {
@@ -399,4 +400,5 @@ function displayProj(text, title, src, demo, img) {
     htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML + `<br><br><a href="${src}" target="_blank">source code</a>&nbsp;|&nbsp;<a href="${demo}" target="_blank">demo</a>` +
         `<img src="${img}" class="projectImage" draggable="false" onclick="this.requestFullscreen()">`;
     htmlcontent.style.display = "block";
+    htmlcontent.style.visibility = "visible";
 }
