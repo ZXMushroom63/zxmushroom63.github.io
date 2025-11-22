@@ -8,8 +8,10 @@ async function main() {
     launched = true;
     launchText = `loading rain_${theme}.mp3...`;
     const rainBytes = await (await fetch(`audio/rain_${theme}.mp3`)).arrayBuffer();
-    launchText = "loading 3min_wind_compressed.mp3...";
-    const windBytes = await (await fetch("audio/3min_wind_compressed.mp3")).arrayBuffer();
+    if (theme === "a") {
+        launchText = "loading 3min_wind_compressed.mp3...";
+        var windBytes = await (await fetch("audio/3min_wind_compressed.mp3")).arrayBuffer();
+    }
     launchText = "loading [EXPURGED]...";
     const _Bytes = await (await fetch("audio/recording.mp3")).arrayBuffer();
 
@@ -17,8 +19,10 @@ async function main() {
 
     launchText = `decoding rain_${theme}.mp3...`;
     const rainBuffer = await audioCtx.decodeAudioData(rainBytes);
-    launchText = "decoding 3min_wind_compressed.wav...";
-    const windBuffer = await audioCtx.decodeAudioData(windBytes);
+    if (theme === "a") {
+        launchText = "decoding 3min_wind_compressed.wav...";
+        var windBuffer = await audioCtx.decodeAudioData(windBytes);
+    }
     launchText = "decoding [EXPURGED]...";
     const _Buffer = await audioCtx.decodeAudioData(_Bytes);
     launchText = "";
@@ -27,9 +31,11 @@ async function main() {
     rainSource.loop = true;
     rainSource.buffer = rainBuffer;
 
-    const windSource = audioCtx.createBufferSource();
-    windSource.loop = true;
-    windSource.buffer = windBuffer;
+    if (theme === "a") {
+        var windSource = audioCtx.createBufferSource();
+        windSource.loop = true;
+        windSource.buffer = windBuffer;
+    }
 
     const _Source = audioCtx.createBufferSource();
     _Source.buffer = _Buffer;
@@ -39,7 +45,9 @@ async function main() {
     const sliderNode = audioCtx.createGain();
 
     rainSource.connect(gainNode);
-    windSource.connect(gainNode);
+    if (theme === "a") {
+        windSource.connect(gainNode);
+    }
     _Source.connect(gainNode);
 
 
@@ -52,7 +60,10 @@ async function main() {
     sliderNode.connect(audioCtx.destination);
 
     rainSource.start(0);
-    windSource.start(0);
+    
+    if (theme === "a") {
+        windSource.start(0);
+    }
 
     if (Math.random() < 0.1 && (window.theme === "a")) { // hello :]
         _Source.start(Math.random() * 63);
@@ -64,7 +75,7 @@ async function main() {
 }
 let startProj = () => {
     document.onclick = null;
-document.ontouchstart = null;
+    document.ontouchstart = null;
     main();
 };
 document.ontouchstart = startProj;
@@ -83,7 +94,7 @@ addEventListener("blur", () => {
         if (hour > 20) {
             timeText = "night";
         }
-        const opts = ["hello", "see you later", "good " + timeText, "nice weather", "bye", "FADE_OUT_ANIM", "stay hydrated",          "did you hear it?"];
+        const opts = ["hello", "see you later", "good " + timeText, "nice weather", "bye", "FADE_OUT_ANIM", "stay hydrated", "did you hear it?"];
 
         helloQuote = opts[Math.floor(Math.random() * opts.length)];
 
