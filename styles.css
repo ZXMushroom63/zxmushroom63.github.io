@@ -148,9 +148,25 @@ li.selected {
   text-decoration-color: white;
   border-color: rgba(255, 255, 255, 0.5);
 }
-.pfp {
+div.pfp {
   width: min(256px, 85vw);
-  margin-bottom: 2px;
+  height: calc(min(256px, 85vw) + 1.5rem);
+  margin-bottom: calc(2px + 0.5rem);
+  display: inline-block;
+  overflow: hidden;
+}
+div.pfp span {
+  display: block;
+  width: min(256px, 85vw);
+  height: 0px;
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  white-space: nowrap;
+}
+img.pfp {
+  width: min(256px, 85vw);
+  image-rendering: pixelated;
 }
 ::-webkit-scrollbar {
   display: none;
