@@ -111,6 +111,17 @@ const entities = [
             scrshot: "public/demo_images/goodmusic.png"
         },
     },
+    {
+        x: 601, y: 602, preX: 604, preY: 601, radius: 125, name: "UE4 Wakatime Integration", tex: "zx_ue4waka", data: {
+            desc: `WakatimeIntegration is an Unreal Engine 4 plugin that sends heartbeats to track your time. Unlike other tracking plugins, it keeps track of adding and removing assets, as well as the last edited asset and sends that data with the heartbeat. This makes it ideal for use in Hack Club. This is also my second ever experience with C++, and I'm already sick of null pointer exceptions!
+            
+            <br><br><br>Built using:<br>
+            C++, C#`,
+            source: "https://github.com/ZXMushroom63/WakatimeIntegration",
+            demo: "https://hackatime.hackclub.com/docs/editors/unreal-engine-4",
+            scrshot: "public/demo_images/wakatime_scrshot.png"
+        },
+    }
 ];
 let inspectedEntity = null;
 const gravity = { x: 0, y: 20 };
