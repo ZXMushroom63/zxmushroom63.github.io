@@ -9,6 +9,11 @@ let sliderVol = clamp(parseFloat(localStorage.getItem("volamount")), 0, 1);
 if (isNaN(sliderVol)) {
     sliderVol = 1;
 }
+const baseFilter = true ? "brightness(3) contrast(4) saturate(2) brightness(0.08) hue-rotate(168deg) contrast(1.1)" : "brightness(0.5)";
+window.theme = "a";
+if (baseFilter.length > 16) {
+    window.theme = "b";
+}
 const renderer = {};
 let lastChangeTimer = 0;
 let currentScene = "aboutme";
@@ -115,7 +120,7 @@ function frame() {
     }
 
     if (gainLerp > 0.01) {
-        mainCtx.filter = window.bgFilter || "brightness(0.5)";
+        mainCtx.filter = window.bgFilter || baseFilter;
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
         mainCtx.filter = "none";
     }
@@ -362,6 +367,9 @@ function lightning(manual) {
     }, 20 + 70 * Math.random());
     const sfx = new Audio(`audio/Thunder${1 + Math.floor(3 * Math.random())}.ogg`);
     sfx.volume = Math.min(1, 400 / lightningDistance) * sliderVol;
+    if (window.theme === "b") {
+        sfx.playbackRate = 0.75;
+    }
     setTimeout(() => sfx.play(), lightningDistance / 343 * 350);
     if (!manual) {
         return setTimeout(lightning, 1000 * 30 + (1000 * 50 * Math.random()));

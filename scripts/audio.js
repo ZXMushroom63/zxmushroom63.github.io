@@ -6,8 +6,8 @@ globalThis.gain2 = {
 };
 async function main() {
     launched = true;
-    launchText = "loading rain_a.mp3...";
-    const rainBytes = await (await fetch("audio/rain_a.mp3")).arrayBuffer();
+    launchText = `loading rain_${theme}.mp3...`;
+    const rainBytes = await (await fetch(`audio/rain_${theme}.mp3`)).arrayBuffer();
     launchText = "loading 3min_wind_synth.mp3...";
     const windBytes = await (await fetch("audio/3min_wind_synth.mp3")).arrayBuffer();
     launchText = "loading [EXPURGED]...";
@@ -15,7 +15,7 @@ async function main() {
 
     bgrain1.play();
 
-    launchText = "decoding rain_a.mp3...";
+    launchText = `decoding rain_${theme}.mp3...`;
     const rainBuffer = await audioCtx.decodeAudioData(rainBytes);
     launchText = "decoding 3min_wind_synth.wav...";
     const windBuffer = await audioCtx.decodeAudioData(windBytes);
@@ -54,7 +54,7 @@ async function main() {
     rainSource.start(0);
     windSource.start(0);
 
-    if (Math.random() < 0.125) { // hello :]
+    if (Math.random() < 0.1 && (window.theme === "a")) { // hello :]
         _Source.start(Math.random() * 63);
     }
 
