@@ -3,7 +3,7 @@ renderer["pfps"] = function (mainCtx, renderLeft, renderTop, renderRight, render
     mainCtx.textAlign = "left";
     mainCtx.font = px(24)+"px monospace";
     if (htmlcontent.writeEvent) {
-        displayText("Test content :D", "Profile Pictures")
+        displayText("Test content :D", "Profile Pictures", true);
         htmlcontent.writeEvent = false;
     }
 }

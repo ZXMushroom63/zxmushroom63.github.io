@@ -387,10 +387,10 @@ mainUI.addEventListener("contextmenu", (e) => e.preventDefault());
 
 const CLOSE_BTN = `<a class="close" href="javascript:void(0)" onclick="this.parentElement.parentElement.style.display = 'none';">[X]</a>`;
 
-function displayText(text, title) {
+function displayText(text, title, noClose) {
     title ||= "popup";
     htmlcontent.innerText = text;
-    htmlcontent.innerHTML = "<h2>" + title + "&nbsp;" + CLOSE_BTN + "</h2><br>" + htmlcontent.innerHTML;
+    htmlcontent.innerHTML = "<h2>" + title + (noClose ? "" : "&nbsp;" + CLOSE_BTN) + "</h2><br>" + htmlcontent.innerHTML;
     htmlcontent.style.display = "block";
     htmlcontent.style.visibility = "visible";
     htmlcontent.writeEvent = true;
