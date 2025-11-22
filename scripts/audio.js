@@ -8,8 +8,8 @@ async function main() {
     launched = true;
     launchText = `loading rain_${theme}.mp3...`;
     const rainBytes = await (await fetch(`audio/rain_${theme}.mp3`)).arrayBuffer();
-    launchText = "loading 3min_wind_synth.mp3...";
-    const windBytes = await (await fetch("audio/3min_wind_synth.mp3")).arrayBuffer();
+    launchText = "loading 3min_wind_compressed.mp3...";
+    const windBytes = await (await fetch("audio/3min_wind_compressed.mp3")).arrayBuffer();
     launchText = "loading [EXPURGED]...";
     const _Bytes = await (await fetch("audio/recording.mp3")).arrayBuffer();
 
@@ -17,7 +17,7 @@ async function main() {
 
     launchText = `decoding rain_${theme}.mp3...`;
     const rainBuffer = await audioCtx.decodeAudioData(rainBytes);
-    launchText = "decoding 3min_wind_synth.wav...";
+    launchText = "decoding 3min_wind_compressed.wav...";
     const windBuffer = await audioCtx.decodeAudioData(windBytes);
     launchText = "decoding [EXPURGED]...";
     const _Buffer = await audioCtx.decodeAudioData(_Bytes);
