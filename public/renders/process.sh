@@ -1,0 +1,1 @@
+for f in *.png; do ffmpeg -i "$f" -compression_level 100 "$(basename "$f" .uncompressed.png).png"; done
