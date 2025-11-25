@@ -120,14 +120,18 @@ function frame() {
         currentRain.play();
     }
 
-    if (overrideImage && gainLerp > 0.01) {
-        mainCtx.filter = window.bgFilter || "none";
-        mainCtx.drawImage(assets[overrideImage](), fillX, fillY, fillWidth, fillHeight);
-        mainCtx.filter = "none";
-    } else if (gainLerp > 0.01) {
-        mainCtx.filter = window.bgFilter || baseFilter;
-        mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
-        mainCtx.filter = "none";
+    try {
+        if (overrideImage && gainLerp > 0.01) {
+            mainCtx.filter = window.bgFilter || "none";
+            mainCtx.drawImage(assets[overrideImage](), fillX, fillY, fillWidth, fillHeight);
+            mainCtx.filter = "none";
+        } else if (gainLerp > 0.01) {
+            mainCtx.filter = window.bgFilter || baseFilter;
+            mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
+            mainCtx.filter = "none";
+        }
+    } catch (error) {
+
     }
 
     if (gainLerp > 0.5) {
