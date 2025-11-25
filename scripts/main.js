@@ -75,6 +75,7 @@ let lastFrame = Date.now();
 let avgTime = 0;
 let launchText = "click to launch";
 let mobileMode = false;
+let overrideImage = null;
 function frame() {
     mobileMode = 950 > innerWidth;
     const currentTime = Date.now();
@@ -119,7 +120,11 @@ function frame() {
         currentRain.play();
     }
 
-    if (gainLerp > 0.01) {
+    if (overrideImage && gainLerp > 0.01) {
+        mainCtx.filter = window.bgFilter || "none";
+        mainCtx.drawImage(assets[overrideImage](), fillX, fillY, fillWidth, fillHeight);
+        mainCtx.filter = "none";
+    } else if (gainLerp > 0.01) {
         mainCtx.filter = window.bgFilter || baseFilter;
         mainCtx.drawImage(currentRain, fillX, fillY, fillWidth, fillHeight);
         mainCtx.filter = "none";
@@ -338,9 +343,14 @@ addEventListener("touchcancel", (e) => {
 addEventListener("load", () => {
     document.querySelector("#floatermenu").addEventListener("click", (e) => {
         if (e.target.hasAttribute("data-val")) {
+            const newScene = e.target.getAttribute("data-val");
+            if (newScene.startsWith("fn_")) {
+                renderer[newScene]();
+                return;
+            }
             document.querySelector(".selected").classList.remove("selected");
             e.target.classList.add("selected");
-            currentScene = e.target.getAttribute("data-val");
+            currentScene = newScene;
             lastChangeTimer = 0.25;
             document.querySelector("#content").style.visibility = "hidden";
             htmlcontent.writeEvent = true;
