@@ -9,3 +9,7 @@ I challenged myself to make my website actually interesting and original, which 
 
 I ended up getting quite passionate about perfecting details and polishing the website, as well as changing a lot of common UI concepts with more fun ones.
  - Eg: The 'projects' tab doesn't have a list, it has a homemade physics engine simulating balls which you have to double click to view more information. (You can also fling them around if you want)
+
+
+### Build / Deploy
+This is a static HTML site, do whatever you want
