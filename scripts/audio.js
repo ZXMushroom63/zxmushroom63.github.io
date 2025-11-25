@@ -65,7 +65,7 @@ async function main() {
         windSource.start(0);
     }
 
-    if (Math.random() < 0.1 && (window.theme === "a")) { // hello :]
+    if (Math.random() < 0.04 && (window.theme === "a")) { // hello :]
         _Source.start(Math.random() * 63);
     }
 
