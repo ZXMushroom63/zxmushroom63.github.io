@@ -121,6 +121,17 @@ const entities = [
             demo: "https://hackatime.hackclub.com/docs/editors/unreal-engine-4",
             scrshot: "public/demo_images/wakatime_scrshot.png"
         },
+    },
+    {
+        x: 599, y: 598, preX: 604, preY: 601, radius: 125, name: "Junk Graveyard", tex: "zx_junkgraveyard", data: {
+            desc: `small horror game about metal detecting for a profit to clear the dig site of its valuables.
+            
+            <br><br><br>Built using:<br>
+            Unreal Engine 5, SYNTHETIC Audio, Blender 4.5`,
+            source: "https://github.com/ZXMushroom63/DiggingGame",
+            demo: "https://zxmushroom63.itch.io/junk-graveyard",
+            scrshot: "public/demo_images/bsKVSs.png"
+        },
     }
 ];
 let inspectedEntity = null;
