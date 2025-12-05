@@ -130,7 +130,7 @@ const entities = [
             Unreal Engine 5, SYNTHETIC Audio, Blender 4.5`,
             source: "https://github.com/ZXMushroom63/DiggingGame",
             demo: "https://zxmushroom63.itch.io/junk-graveyard",
-            scrshot: "public/demo_images/bsKVSs.png"
+            scrshot: "public/demo_images/craig.png"
         },
     }
 ];
